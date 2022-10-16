@@ -2,13 +2,20 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: path.resolve(__dirname, './src/index.jsx'),
   output: {
-    path: path.resolve(__dirname, "./static/frontend"),
-    filename: "[name].js",
+    path: path.resolve(__dirname, './dist'),
+    filename: "bundle.js",
+  },
+  devServer: {
+    static: path.resolve(__dirname, '../Adoptr'),
   },
   module: {
     rules: [
+      {
+        test: /\.txt$/,
+        use: 'raw-loader'
+      },
       {
         test: /\.js|.jsx$/,
         exclude: /node_modules/,

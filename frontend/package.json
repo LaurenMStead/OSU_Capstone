@@ -2,14 +2,11 @@
   "name": "frontend",
   "version": "1.0.0",
   "main": "index.js",
-
   "scripts": {
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production"
   },
-
   "license": "MIT",
-
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.4",
