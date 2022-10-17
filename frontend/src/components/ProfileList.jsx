@@ -10,7 +10,7 @@ export default class ProfileList extends Component {
   render() {
     return (
       <div>
-        <h1>This is the ProfileList</h1>
+        {this.props.profiles.map((profile) => <ProfileCard />)}
       </div>
     );
   }
