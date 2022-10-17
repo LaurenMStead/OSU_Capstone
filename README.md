@@ -1,6 +1,12 @@
 # OSU Capstone Project - Pet Adoption App
 Contributors: Sebastian Espinas, Shawn Kim, Lauren Ruff, Neil Thayamballi
 
+## Instructions: Running the Server Locally
+1. In the terminal or CLI, navigate to the top level folder of the project
+2. Type "python manage.py runserver" (without quotes) and hit enter
+3. Open your browser of choice and type 127.0.0.1:8000 in place of a URL
+4. You should see the server responses to the browser request in the terminal/CLI
+
 ## Project Requirements
 1. Accounts and login. Admin and public accounts.
 2. Shelter needs to be able to create new "dating" profiles, with type of animal, breed, disposition, pic, availability, news item, and description.
