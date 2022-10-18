@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Route,
   Routes,
@@ -16,7 +16,7 @@ const App = () => {
 
   // TO-DO: need to send request to get list of pets, set pets state
   /*
-  componentDidMount() {
+  useEffect() {
     // when server starts, it will send a request to Petfinder API to get all animals and save it into database
     // when component mounts, it will send a request to the server to get 10 at a time for the feed and when someone infinitely scrolls should we keep sending get requests?
       // or should we just get all of the animals when component mounts and save in the state?

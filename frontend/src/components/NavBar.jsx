@@ -1,14 +1,14 @@
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = () =>  {
-  const navigate = useNavigate();
+  // TO-DO: if user is logged in, show logout button. But if user is not logged in, show login button. This might be done in top-level (App.jsx)
 
   return (
     <div id="navBar">
-      <button id="homeButton" onClick={() => navigate('/feed')}>Home</button>
-      <button id="searchButton" onClick={() => navigate('/search')}>Search</button>
-      <button id="browseButton" onClick={() => navigate('/browse')}>Browse</button>
-      <button id="loginButton" onClick={() => navigate('/login')}>Login</button>
+      <NavLink id="homeButton" to="/feed">Home</NavLink>
+      <NavLink id="searchButton" to="/search">Search</NavLink>
+      <NavLink id="browseButton" to="/browse">Browse</NavLink>
+      <NavLink id="loginButton" to="/login">Login</NavLink>
     </div>
   );
 }

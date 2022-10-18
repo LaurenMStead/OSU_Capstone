@@ -1,4 +1,4 @@
-const FilterBar = () => {
+const FilterBar = ({ filterPets }) => {
   const [type, setType] = ['dog', 'cat', 'others'];
   const [breed, setBreed] = {
     dog: ['a', 'b', 'c', 'd', 'e'],
@@ -19,7 +19,7 @@ const FilterBar = () => {
     // uses optgroup if it's listing for breed
     if (desc.dog !== undefined) {
       return (
-        <select onChange={onChange}>
+        <select onChange={onChange} multiple>
           <option disabled value={null}>
             Select an option
           </option>
@@ -49,7 +49,7 @@ const FilterBar = () => {
 
   return (
     <div>
-      <form>
+      <form onSubmit={filterPets}>
       <label for="type">Type:</label>
       {getDropdownOptions(type)}
       <label for="breed">Breed:</label>
@@ -58,8 +58,7 @@ const FilterBar = () => {
       {getDropdownOptions(disposition)}
       <label for="age">Age:</label>
       {getDropdownOptions(age)}
-      <label for="available">Only show Available:</label>
-      <input type="checkbox" id="available" name="available" value="available" />
+      <input type="submit" value="Submit"/>
       </form>
     </div>
   );

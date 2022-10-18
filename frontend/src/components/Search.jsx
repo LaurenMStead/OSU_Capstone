@@ -2,9 +2,16 @@ import FilterBar from './FilterBar.jsx';
 import ProfileList from './ProfileList.jsx';
 
 const Search = () => {
+  const [filteredPets, setFilteredPets] = [];
+
+  const filterPets = () => {
+    axios.get('/pets/:')
+  }
+
   return (
     <div>
-      <h1>This is the Search</h1>
+      <FilterBar filterPets={filterPets}/>
+      <ProfileList />
     </div>
   );
 }
