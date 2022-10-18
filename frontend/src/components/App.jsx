@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import {
   Route,
   Routes,
@@ -11,13 +11,8 @@ import Profile from './Profile.jsx';
 import Search from './Search.jsx';
 import Browse from './Browse.jsx';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pets: [],
-    }
-  }
+const App = () => {
+  const [pets, setPets] = useState([]);
 
   // TO-DO: need to send request to get list of pets, set pets state
   /*
@@ -28,23 +23,23 @@ export default class App extends Component {
   }
   */
 
-  render() {
-    return (
-      <div>
-        <Navbar />
-        <Routes>
-          <Route path="/login" component={<Login />} />
-          <Route path="/signup" component={<Signup />} />
-          <Route path="/feed" component={<ProfileList />} />
-          <Route path="/pet/*" component={<Profile />} />
-          <Route path="/search" component={<Search />} />
-          <Route path="/browse" component={<Browse />} />
-          <Route path="/">
-            <Redirect to="/feed" />
-          </Route>
-          <Route path="*" component={() => '404 NOT FOUND'} />
-        </Routes>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/login" component={<Login />} />
+        <Route path="/signup" component={<Signup />} />
+        <Route path="/feed" component={<ProfileList />} />
+        <Route path="/pet/*" component={<Profile />} />
+        <Route path="/search" component={<Search />} />
+        <Route path="/browse" component={<Browse />} />
+        <Route path="/">
+          <Redirect to="/feed" />
+        </Route>
+        <Route path="*" component={() => '404 NOT FOUND'} />
+      </Routes>
+    </div>
+  );
 }
+
+export default App;

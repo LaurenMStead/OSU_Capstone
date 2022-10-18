@@ -1,30 +1,23 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+const FilterBar = () => {
+  const [type, setType] = ['dog', 'cat', 'others'];
+  const [breed, setBreed] = {
+    dog: ['a', 'b', 'c', 'd', 'e'],
+    cat: ['a', 'b', 'c', 'd', 'e']
+  };
+  const [disposition, setDisposition] = ['Good with other animals', 'Good with children', 'Animal must be leashed at all times'];
+  const [age, setAge] = ['Baby', 'Youth', 'Adult', 'Senior'];
+  const [selectedOptions, setSelectedOptions] = {
+    type: null,
+    breed: null,
+    disposition: null,
+    age: null
+  };
 
-export default class FilterBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      type: ['dog', 'cat', 'others'],
-      breed: {
-        dog: ['a', 'b', 'c', 'd', 'e'],
-        cat: ['a', 'b', 'c', 'd', 'e']
-      },
-      disposition: ['Good with other animals', 'Good with children', 'Animal must be leashed at all times'],
-      age: ['Baby', 'Youth', 'Adult', 'Senior'],
-      selectedOptions: {
-        type: null,
-        breed: null,
-        disposition: null,
-        age: null
-      }
-    }
-  }
+  const getDropdownOptions = (desc) => {
+    let optionList = desc;
 
-  getDropdownOptions(desc) {
-    let optionList = this.state[desc];
-
-    if (desc === 'breed') {
+    // uses optgroup if it's listing for breed
+    if (desc.dog !== undefined) {
       return (
         <select onChange={onChange}>
           <option disabled value={null}>
@@ -41,6 +34,7 @@ export default class FilterBar extends Component {
       )
     }
 
+    // lists normal drop down for all other filtering options, besides breed
     return (
       <select onChange={onChange}>
         <option disabled value={null}>
@@ -53,22 +47,22 @@ export default class FilterBar extends Component {
     )
   }
 
-  render() {
-    return (
-      <div>
-        <form>
-        <label for="type">Type:</label>
-        {getDropdownOptions('type')}
-        <label for="breed">Breed:</label>
-        {getDropdownOptions('breed')}
-        <label for="disposition">Disposition:</label>
-        {getDropdownOptions('disposition')}
-        <label for="age">Age:</label>
-        {getDropdownOptions('age')}
-        <label for="available">Only show Available:</label>
-        <input type="checkbox" id="available" name="available" value="available" />
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <form>
+      <label for="type">Type:</label>
+      {getDropdownOptions(type)}
+      <label for="breed">Breed:</label>
+      {getDropdownOptions(breed)}
+      <label for="disposition">Disposition:</label>
+      {getDropdownOptions(disposition)}
+      <label for="age">Age:</label>
+      {getDropdownOptions(age)}
+      <label for="available">Only show Available:</label>
+      <input type="checkbox" id="available" name="available" value="available" />
+      </form>
+    </div>
+  );
 }
+
+export default FilterBar;
