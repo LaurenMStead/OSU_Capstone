@@ -1,7 +1,9 @@
-const ProfileCard = () => {
+function ProfileCard (pets) {
   return (
     <div>
-      <h1>This is the ProfileCard</h1>
+      <img src={pets.pic} alt={pets.name}></img>
+      <h2>{pets.name}</h2>
+      <p>Joined: {pets.dateCreated}   Age: {pets.age}   {pets.gender}</p>
     </div>
   );
 }
