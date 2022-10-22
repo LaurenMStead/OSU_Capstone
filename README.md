@@ -1,6 +1,15 @@
 # OSU Capstone Project - Pet Adoption App
 Contributors: Sebastian Espinas, Shawn Kim, Lauren Ruff, Neil Thayamballi
 
+## Overview: Directory Structure
+- Adopter: files related to server setup
+- frontend: all frontend data, including React, javascript, HTML, CSS, etc.
+- frontend/migrations: database related files
+- frontend/static/js: all javascript (js and/or jsx) files
+- frontend/static/css: all css files
+- frontend/static/images: all image files
+- frontend/templates: all HTML files
+
 ## Instructions: Running the Server Locally
 1. In the terminal or CLI, navigate to the top level folder of the project
 2. Type "python manage.py runserver" (without quotes) and hit enter
@@ -41,17 +50,17 @@ The server-side backend will host and give the frontend access to those database
 The main database is the PETS database. Each PET will have an ID, TYPE, BREED, AGE, DISPOSITION, PICTURE(S), AVAILABILITY, LOCATION, NEWS_ITEM, and DATE_CREATED. There will also be databases for TYPE, BREED, AGE, and DISPOSITION. This data will be pulled from to populate the Administration page and the Search page. The user’s login information will also be stored in a database, with an ID, EMAIL, and PASSWORD_HASH. 
 
 #### Database ER Diagram
-![image](https://user-images.githubusercontent.com/48524322/197352241-2ab1ff84-9de7-4e38-900f-f6fc65f7e086.png)
+![image](https://user-images.githubusercontent.com/48524322/197360149-1ec3bca1-6d79-42ff-ad0c-9584a0e34a15.png)
 
 #### Database Schema
-![image](https://user-images.githubusercontent.com/48524322/197352302-438d3300-e7b2-4438-b207-9ff01eef53e7.png)
+![image](https://user-images.githubusercontent.com/48524322/197360031-bcb0984b-f089-405b-b2f2-7a947611d594.png)
 
 ### Software Tools
 - Figma for designing the website.
 - Javascript (React), CSS, and Webpack for web-facing, user side.
-- Python Django to create the server and host the databases.
+- Python Django to create the server and host the database.
 - Petfinder API to get data for our database.
-= Generate SQL databases with MongoDB.
+- Generate SQL database with  ~~MongoDB~~  SQLite3.
 
 ### Conclusion
 Our team’s goal is to create a seamless, easy-to-navigate website for those looking to adopt a pet, whether they are actively searching or are planning to adopt in the future. By using React, Python Django, and SQL, we will create a user-friendly, dynamic website with a reliable backend and accessible information for all available pets. This project will take roughly 320 hours to complete across all developers and each developer is expected to complete their tasks on time as noted in the Project Work section. Our collective efforts will ultimately lead to successful deployment and usability of this pet adoption website.    
