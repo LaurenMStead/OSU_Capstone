@@ -1,12 +1,8 @@
 import { MdPhone, MdEmail } from 'react-icons/md';
-import NavBar from '../components/NavBar.js';
 
 function Profile( pets ) {
     return (
         <div>
-            <NavBar />
-            <br></br>
-            <br></br>
             <table>
                 <tr>
                     <td>
