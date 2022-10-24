@@ -3,6 +3,7 @@ import { MdPhone, MdEmail } from 'react-icons/md';
 function Profile( pets ) {
     return (
         <div>
+            <br>
             <table>
                 <tr>
                     <td>
