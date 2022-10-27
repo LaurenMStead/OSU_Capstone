@@ -1,9 +1,9 @@
 import ProfileCard from './ProfileCard.jsx';
 
-const ProfileList = () => {
+const ProfileList = ({ pets }) => {
   return (
     <div>
-      {this.props.profiles.map((profile) => <ProfileCard />)}
+      {pets.map((pet) => <ProfileCard pet={pet} />)}
     </div>
   );
 }
