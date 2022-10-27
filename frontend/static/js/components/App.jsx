@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {
   Route,
   Routes,
+  useHistory,
 } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
 import Login from './Login.jsx';
@@ -81,9 +82,11 @@ const App = () => {
   */
 
   // TO-DO: create action function called selectPet. When a user clicks on a pet, the state 'pet' should be changed to the selected pet. This will ultimately be used by the ProfileCard component (App will give selectPet to ProfileList and Browse, and they'll pass it to ProfileCard).
-  const selectPet = () => {
+  const selectPet = (selectedPet) => {
     // set pet to the selected pet
-    // redirect to '/pet/:pet_id
+    setPet(selectedPet);
+    // navigate to '/pet/:pet_id
+    history.push(`/pet/${selectedPet.id}`);
   }
 
   return (

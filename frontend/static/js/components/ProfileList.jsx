@@ -1,9 +1,9 @@
 import ProfileCard from './ProfileCard.jsx';
 
-const ProfileList = ({ pets }) => {
+const ProfileList = ({ pets, selectPet }) => {
   return (
     <div>
-      {pets.map((pet) => <ProfileCard pet={pet} />)}
+      {pets.map((pet) => <ProfileCard pet={pet} selectPet={selectPet} />)}
     </div>
   );
 }
