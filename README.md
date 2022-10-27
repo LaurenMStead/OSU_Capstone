@@ -2,13 +2,14 @@
 Contributors: Sebastian Espinas, Shawn Kim, Lauren Ruff, Neil Thayamballi
 
 ## Overview: Directory Structure
-- Adopter: files related to server setup
+- Adopter: Our Main Project, includes setup for the program
+- api: our backend, includes sqllite models
 - frontend: all frontend data, including React, javascript, HTML, CSS, etc.
-- frontend/migrations: database related files
-- frontend/static/js: all javascript (js and/or jsx) files
-- frontend/static/css: all css files
+- frontend/src: all javascript (js/jsx) source code for rendering webpages with React
+- frontend/static/css: css files
+- frontend/static/frontend: our main.js file to be loaded by the system
 - frontend/static/images: all image files
-- frontend/templates: all HTML files
+- frontend/templates: one HTML file that React will render the pages through
 
 ## Instructions: Running the Server Locally
 1. In the terminal or CLI, navigate to the top level folder of the project
