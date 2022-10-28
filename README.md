@@ -3,10 +3,10 @@ Contributors: Sebastian Espinas, Shawn Kim, Lauren Ruff, Neil Thayamballi
 
 ## Overview: Directory Structure
 - Adopter: Our Main Project, includes setup for the program
-- api: our backend, includes sqllite models
+- api: our backend, includes SQLite3 models
 - frontend: all frontend data, including React, javascript, HTML, CSS, etc.
 - frontend/src: all javascript (js/jsx) source code for rendering webpages with React
-- frontend/static/css: css files
+- frontend/static/css: css file
 - frontend/static/frontend: our main.js file to be loaded by the system
 - frontend/static/images: all image files
 - frontend/templates: one HTML file that React will render the pages through
