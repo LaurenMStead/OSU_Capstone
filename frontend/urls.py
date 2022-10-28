@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import indexView  # the view responsible for the frontend
+from .views import index
 
 urlpatterns = [
-    path('', indexView),  # add the view to the url
+    path('', index),            # home page/ news feed
+    path('signup', index),      # signup page
 ]
