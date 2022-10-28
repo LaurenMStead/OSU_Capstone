@@ -2,29 +2,19 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: path.resolve(__dirname, './static/js/index.jsx'),
+  entry: "./src/index.jsx",
   output: {
-    path: path.resolve(__dirname, './templates'),
-    filename: "bundle.js",
-  },
-  devServer: {
-    static: path.resolve(__dirname, '../Adoptr'),
+    path: path.resolve(__dirname, "./static/frontend"),
+    filename: "[name].js",
   },
   module: {
     rules: [
       {
-        test: /\.txt$/,
-        use: 'raw-loader'
-      },
-      {
         test: /\.js|.jsx$/,
         exclude: /node_modules/,
-        use: "babel-loader",
-      },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: ["style-loader", "css-loader"],
+        use: {
+          loader: "babel-loader",
+        },
       },
     ],
   },
@@ -34,7 +24,8 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify("development"),
+        // This has effect on the react lib size
+        NODE_ENV: JSON.stringify("production"),
       },
     }),
   ],
