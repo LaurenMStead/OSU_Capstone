@@ -1,6 +1,22 @@
 # OSU Capstone Project - Pet Adoption App
 Contributors: Sebastian Espinas, Shawn Kim, Lauren Ruff, Neil Thayamballi
 
+## Instructions: Running the Server Locally
+1. In the terminal, navigate to the top level folder of the project
+2. Type "python manage.py runserver" (without quotes) and hit enter
+3. Open your browser of choice and type 127.0.0.1:8000 in place of a URL
+4. You should see the server responses to the browser request in the terminal/CLI
+
+## Instructions: Running the Server Locally for development
+1. In the terminal or CLI, navigate to the top level folder of the project
+2. Type "python manage.py runserver" (without quotes) and hit enter
+3. Open a second terminal and navigate to %project%/frontend
+4. Type "npm start dev" (without quotes) and hit enter
+5. Open your browser of choice and type 127.0.0.1:8000 in place of a URL
+7. When you make changes in one of the .js/.jsx files, save the change and reload the page to see the change in real time. You will see the second terminal (running npm) "reload/repack" the updates.
+
+
+
 ## Overview: Directory Structure
 - Adopter: Our Main Project, includes setup for the program
 - api: our backend, includes SQLite3 models
@@ -10,12 +26,6 @@ Contributors: Sebastian Espinas, Shawn Kim, Lauren Ruff, Neil Thayamballi
 - frontend/static/frontend: our main.js file to be loaded by the system
 - frontend/static/images: all image files
 - frontend/templates: one HTML file that React will render the pages through
-
-## Instructions: Running the Server Locally
-1. In the terminal or CLI, navigate to the top level folder of the project
-2. Type "python manage.py runserver" (without quotes) and hit enter
-3. Open your browser of choice and type 127.0.0.1:8000 in place of a URL
-4. You should see the server responses to the browser request in the terminal/CLI
 
 ## Project Requirements
 1. Accounts and login. Admin and public accounts.
