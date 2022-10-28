@@ -1,7 +1,7 @@
 import FilterBar from './FilterBar.jsx';
 import ProfileList from './ProfileList.jsx';
 
-const Search = () => {
+const Search = ({ selectPet }) => {
   const [filteredPets, setFilteredPets] = [];
 
   const filterPets = () => {
@@ -11,7 +11,7 @@ const Search = () => {
   return (
     <div>
       <FilterBar filterPets={filterPets}/>
-      <ProfileList />
+      <ProfileList selectPet={selectPet}/>
     </div>
   );
 }

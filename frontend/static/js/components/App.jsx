@@ -81,7 +81,6 @@ const App = () => {
   }
   */
 
-  // TO-DO: create action function called selectPet. When a user clicks on a pet, the state 'pet' should be changed to the selected pet. This will ultimately be used by the ProfileCard component (App will give selectPet to ProfileList and Browse, and they'll pass it to ProfileCard).
   const selectPet = (selectedPet) => {
     // set pet to the selected pet
     setPet(selectedPet);
@@ -97,7 +96,7 @@ const App = () => {
         <Route path="/signup" component={<Signup />} />
         <Route path="/feed" component={<ProfileList pets={pets} selectPet={selectPet} />} />
         <Route path="/pet/*" component={<Profile pet={pet} />} />
-        <Route path="/search" component={<Search pets={pets} />} />
+        <Route path="/search" component={<Search pets={pets} selectPet={selectPet} />} />
         <Route path="/browse" component={<Browse selectPet={selectPet} />} />
         <Route path="/">
           <Redirect to="/feed" />
