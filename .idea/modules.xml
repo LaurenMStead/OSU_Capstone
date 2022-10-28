@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PetAdoptionApp.iml" filepath="$PROJECT_DIR$/.idea/PetAdoptionApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/OSU_Capstone.iml" filepath="$PROJECT_DIR$/.idea/OSU_Capstone.iml" />
     </modules>
   </component>
 </project>
