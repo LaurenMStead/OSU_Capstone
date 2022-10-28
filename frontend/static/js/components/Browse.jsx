@@ -1,3 +1,4 @@
+import React from 'react';
 import ProfileCard from './ProfileCard.jsx';
 import axios from 'axios';
 

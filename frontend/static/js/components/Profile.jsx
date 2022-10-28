@@ -1,6 +1,7 @@
+import React from 'react';
 import { MdPhone, MdEmail } from 'react-icons/md';
 
-function Profile( pets ) {
+const Profile = ( pets ) => {
     return (
         <div>
             <table>
@@ -10,7 +11,7 @@ function Profile( pets ) {
                         <p>Joined: {pets.dateCreated}</p>
                         <p>Age: {pets.age}</p>
                         <p>{pets.gender}</p>
-                        <p>Breed: {pets.breed}</p>   
+                        <p>Breed: {pets.breed}</p>
                         <p>Disposition: {pets.disposition}</p>
                         <p>Location: {pets.location}</p>
                         <p>Contact: <MdPhone/><MdEmail/></p>
@@ -24,5 +25,5 @@ function Profile( pets ) {
         </div>
       );
     }
-    
+
     export default Profile;

@@ -1,3 +1,4 @@
+import React from 'react';
 import FilterBar from './FilterBar.jsx';
 import ProfileList from './ProfileList.jsx';
 

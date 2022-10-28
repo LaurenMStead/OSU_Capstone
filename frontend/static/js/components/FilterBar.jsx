@@ -1,3 +1,5 @@
+import React from 'react';
+
 const FilterBar = ({ filterPets }) => {
   const [type, setType] = ['dog', 'cat', 'others'];
   const [breed, setBreed] = {
