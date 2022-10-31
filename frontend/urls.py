@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import index, search, browse, login, signup, profile
+from .views import index\
 
 urlpatterns = [
     path('', index),            # home page/ news feed
-    path('search', search),      # search page
-    path('browse', browse),      # browse page
-    path('login', login),      # login page
-    path('signup', signup),      # signup page
-    path('profile', profile),      # profile page
+    path('search', index),      # search page
+    path('browse', index),      # browse page
+    path('login', index),      # login page
+    path('signup', index),      # signup page
+    path('profile', index),      # profile page
 ]

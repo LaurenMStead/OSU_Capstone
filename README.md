@@ -1,7 +1,7 @@
 # OSU Capstone Project - Pet Adoption App
 Contributors: Sebastian Espinas, Shawn Kim, Lauren Ruff, Neil Thayamballi
 
-## Instructions: Running the Server Locally
+## Instructions: Running the Server Locally for viewing
 1. In the terminal, navigate to the top level folder of the project
 2. Type "python manage.py runserver" (without quotes) and hit enter
 3. Open your browser of choice and type 127.0.0.1:8000 in place of a URL

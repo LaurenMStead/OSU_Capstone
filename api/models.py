@@ -50,8 +50,7 @@ class Pets(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
+
 # FOR TESTING PURPOSES ONLY
 class Codes(models.Model):
     code = models.CharField(max_length=8, default='', unique=True)
-
-
