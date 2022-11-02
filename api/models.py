@@ -1,7 +1,10 @@
+import random
+import string
+
 from django.db import models
-import string, random
 
 
+# FOR TESTING PURPOSES ONLY
 def return_rand_code():
     length = 5
 
@@ -18,7 +21,18 @@ class Credentials(models.Model):
 
 
 class Types(models.Model):
-    type = models.CharField(max_length=25)
+    DOG = 'D'
+    CAT = 'C'
+    REPTILE = 'R'
+    OTHER = 'O'
+
+    PET_TYPE_CHOICES = [
+        (DOG, 'Dog'),
+        (CAT, 'Cat'),
+        (REPTILE, 'Reptile'),
+        (OTHER, 'Other')
+    ]
+    type = models.CharField(max_length=25, choices=PET_TYPE_CHOICES)
 
 
 class Breeds(models.Model):
@@ -26,14 +40,29 @@ class Breeds(models.Model):
 
 
 class Ages(models.Model):
-    age = models.CharField(max_length=25)
+    PET_AGE_CHOICES = [
+        ('Baby', 'Baby'),
+        ('Young', 'Young'),
+        ('Adult', 'Adult'),
+        ('Senior', 'Senior')
+    ]
+    age = models.CharField(max_length=25, choices=PET_AGE_CHOICES)
 
 
 class Dispositions(models.Model):
+    PET_DISPOSITION_CHOICES = [
+
+    ]
     disposition_description = models.CharField(max_length=100)
 
 
 class Availabilities(models.Model):
+    PET_AVAILABILITY_CHOICES = [
+        ('Available', 'Available'),
+        ('Not Available', 'Not Available'),
+        ('Pending', 'Pending'),
+        ('Adopted', 'Adopted')
+    ]
     availability = models.CharField(max_length=15)
 
 

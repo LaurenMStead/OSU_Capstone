@@ -8,10 +8,25 @@ const Browse = ({ selectPet }) => {
 
   return (
     <div>
-      <h1>This is the Browse</h1>
+      <h1>This is the Browse page</h1>
       {/*<ProfileCard selectPet={selectPet} />*/}
     </div>
   );
 }
 
 export default Browse;
+//
+// import React, { Component } from "react";
+//
+//
+// export default class CreateRoomPage extends Component {
+//   constructor(props) {
+//     super(props);
+//   }
+//
+//   render() {
+//     return(
+//         <p>This is the BROWSE page</p>
+//     );
+//   }
+// }
