@@ -22,7 +22,7 @@ SECRET_KEY = 'whfxmu35o6%2)9z71og9*efq^7++so1%@i-nwekkj2d8&fi=$t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['adoptr.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'adoptr.pythonanywhere.com']
 
 # Application definition
 
@@ -115,7 +115,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # for deployment
-STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
