@@ -62,7 +62,7 @@ const HomePage = () => {
     },
     {
       type: 'cat',
-      breed: 'Mancoon',
+      breed: 'Maine Coon',
       age: 'adult',
       disposition: ['Good with children', 'Good with other animals'],
       pic: '',
