@@ -19,8 +19,8 @@ const NavBar = () =>  {
             <NavLink id="homeButton" to="/" style={{margin: 10}}> Home </NavLink>
             <NavLink id="searchButton" to="/search" style={{margin: 10}}> Search </NavLink>
             <NavLink id="browseButton" to="/browse" style={{margin: 10}}> Browse </NavLink>
+            <NavLink id="loginButton" to="/login">Login</NavLink>
             <Routes>
-
                 <Route exact path="/search" element={<Search />} />
                 <Route exact path="/browse" element={<Browse />} />
             </Routes>
