@@ -4,11 +4,11 @@ const Signup = () => {
   return (
     <div>
       <form action="/signup" method="post">
-        <label for="username">Username</label>
+        <label for="username">Username</label>&nbsp;&nbsp;
         <input type="text" placeholder="Enter Username" name="username" required />
         <br></br>
         <br></br>
-        <label for="password">Password</label>
+        <label for="password">Password</label>&nbsp;&nbsp;
         <input type="password" placeholder="Enter Password" name="password" required />
         <br></br>
         <br></br>
