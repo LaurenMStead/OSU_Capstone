@@ -2,20 +2,13 @@
 Contributors: Sebastian Espinas, Shawn Kim, Lauren Ruff, Neil Thayamballi
 
 ## Instructions: Running the Server Locally for viewing
-1. In the terminal, navigate to the top level folder of the project
-2. Type "python manage.py runserver" (without quotes) and hit enter
-3. Open your browser of choice and type 127.0.0.1:8000 in place of a URL
-4. You should see the server responses to the browser request in the terminal/CLI
+A deployed version of the project can be found at adoptr.pythonanywhere.com
 
 ## Instructions: Running the Server Locally for development
 1. In the terminal or CLI, navigate to the top level folder of the project
 2. Type "python manage.py runserver" (without quotes) and hit enter
-3. Open a second terminal and navigate to %project%/frontend
-4. Type "npm start dev" (without quotes) and hit enter
-5. Open your browser of choice and type 127.0.0.1:8000 in place of a URL
-7. When you make changes in one of the .js/.jsx files, save the change and reload the page to see the change in real time. You will see the second terminal (running npm) "reload/repack" the updates.
-
-
+3. Open a second terminal and navigate to %project%/ReactFrontend
+4. Type "npm start" (without quotes) and hit enter; your default browser should open to "localhost:3000/feed" to view the site
 
 ## Overview: Directory Structure
 - Adopter: Our Main Project, includes setup for the program
@@ -61,10 +54,10 @@ The server-side backend will host and give the frontend access to those database
 The main database is the PETS database. Each PET will have an ID, TYPE, BREED, AGE, DISPOSITION, PICTURE(S), AVAILABILITY, LOCATION, NEWS_ITEM, and DATE_CREATED. There will also be databases for TYPE, BREED, AGE, and DISPOSITION. This data will be pulled from to populate the Administration page and the Search page. The user’s login information will also be stored in a database, with an ID, EMAIL, and PASSWORD_HASH. 
 
 #### Database ER Diagram
-![image](https://user-images.githubusercontent.com/48524322/197360149-1ec3bca1-6d79-42ff-ad0c-9584a0e34a15.png)
+![img_2.png](img_2.png)
 
 #### Database Schema
-![image](https://user-images.githubusercontent.com/48524322/197360031-bcb0984b-f089-405b-b2f2-7a947611d594.png)
+![img_1.png](img_1.png)
 
 ### Software Tools
 - Figma for designing the website.
