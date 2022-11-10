@@ -1,10 +1,17 @@
 from rest_framework import serializers
-from .models import Pets
+from .models import Pet
 
 
 class PetSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Pets
-        fields = ('id', 'name', 'type', 'breed', 'age', 'disposition', 'picture_link', 'availability', 'location',
-                  'news', 'last_updated', 'data_created')
-
+        model = Pet
+        fields = ('id',
+                  'name',
+                  'type',
+                  'age',
+                  'gender',
+                  'availability',
+                  'description',
+                  'last_updated',
+                  'date_created'
+                  )

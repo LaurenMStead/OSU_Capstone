@@ -1,25 +1,44 @@
 from django.db import models
 
+BABY = 'Baby'
+YOUNG = 'Young'
+ADULT = 'Adult'
+SENIOR = 'Senior'
+PET_AGE_CHOICES = [
+    (BABY, 'Baby'),
+    (YOUNG, 'Young'),
+    (ADULT, 'Adult'),
+    (SENIOR, 'Senior'),
+]
 
-# Create your models here.
-class Credentials(models.Model):
-    username = models.CharField(max_length=50, unique=True)
-    password_hash = models.CharField(max_length=255, unique=True)
+DOG = 'Dog'
+CAT = 'Cat'
+REPTILE = 'Reptile'
+OTHER = 'Other'
+PET_TYPE_CHOICES = [
+    (DOG, 'Dog'),
+    (CAT, 'Cat'),
+    (REPTILE, 'Reptile'),
+    (OTHER, 'Other'),
+]
 
+MALE = 'Male'
+FEMALE = 'Female'
+PET_SEX_CHOICES = [
+    (MALE, 'Male'),
+    (FEMALE, 'Female'),
+]
 
-class Types(models.Model):
-    DOG = 'D'
-    CAT = 'C'
-    REPTILE = 'R'
-    OTHER = 'O'
-
-    PET_TYPE_CHOICES = [
-        (DOG, 'Dog'),
-        (CAT, 'Cat'),
-        (REPTILE, 'Reptile'),
-        (OTHER, 'Other'),
-    ]
-    type = models.CharField(max_length=25, choices=PET_TYPE_CHOICES, blank=False)
+AVAILABLE = 'Available'
+NOT_AVAILABLE = 'Not Available'
+PENDING = 'Pending'
+ADOPTED = 'Adopted'
+PET_AVAILABILITY_CHOICES = [
+    (AVAILABLE, 'Available'),
+    (NOT_AVAILABLE, 'Not Available'),
+    (PENDING, 'Pending'),
+    (ADOPTED, 'Adopted')
+]
 
 
 class Breeds(models.Model):
@@ -42,20 +61,6 @@ class Breeds(models.Model):
     breed = models.CharField(max_length=50, choices=PET_BREED_CHOICES, blank=True)
 
 
-class Ages(models.Model):
-    BABY = 'B'
-    YOUNG = 'Y'
-    ADULT = 'A',
-    SENIOR = 'S'
-    PET_AGE_CHOICES = [
-        ('Baby', 'Baby'),
-        ('Young', 'Young'),
-        ('Adult', 'Adult'),
-        ('Senior', 'Senior'),
-    ]
-    age = models.CharField(max_length=25, choices=PET_AGE_CHOICES, blank=False)
-
-
 class Dispositions(models.Model):
 
     OPTION_1 = 'Good with children'
@@ -73,31 +78,16 @@ class Dispositions(models.Model):
     disposition_3 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True)
 
 
-class Availabilities(models.Model):
+class Pet(models.Model):
+    name = models.CharField(max_length=25, blank=False)
+    type = models.CharField(max_length=10, choices=PET_TYPE_CHOICES, blank=False, default=DOG)
+    age = models.CharField(max_length=10, choices=PET_AGE_CHOICES, blank=False, default=BABY)
+    gender = models.CharField(max_length=10, choices=PET_SEX_CHOICES, blank=False, default=MALE)
+    availability = models.CharField(max_length=15, choices=PET_AVAILABILITY_CHOICES, blank=False, default=AVAILABLE)
+    description = models.CharField(max_length=255, blank=True, default='')
+    last_updated = models.DateTimeField(auto_now=True, blank=False)
+    date_created = models.DateTimeField(auto_now_add=True, blank=False)
 
-    AVAILABLE = 'AV'
-    NOT_AVAILABLE = 'NA'
-    PENDING = 'P'
-    ADOPTED = 'AD'
+    # TO ADD:
+    # breed, picture_links, news blurb, dispositions
 
-    PET_AVAILABILITY_CHOICES = [
-        (AVAILABLE, 'Available'),
-        (NOT_AVAILABLE, 'Not Available'),
-        (PENDING, 'Pending'),
-        (ADOPTED, 'Adopted')
-    ]
-    availability = models.CharField(max_length=15)
-
-
-class Pets(models.Model):
-    name = models.CharField(max_length=25)
-    type = models.ForeignKey(Types, on_delete=models.CASCADE)
-    breed = models.ForeignKey(Breeds, on_delete=models.CASCADE)
-    age = models.ForeignKey(Ages, on_delete=models.CASCADE)
-    disposition = models.ForeignKey(Dispositions, on_delete=models.CASCADE)
-    picture_link = models.CharField(max_length=255)
-    availability = models.ForeignKey(Availabilities, on_delete=models.CASCADE)
-    location = models.CharField(max_length=255, default='Shelter')
-    news = models.CharField(max_length=255, default='')
-    last_updated = models.DateTimeField(auto_now=True)
-    date_created = models.DateTimeField(auto_now_add=True)
