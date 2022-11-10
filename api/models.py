@@ -74,8 +74,8 @@ class Dispositions(models.Model):
 
     ]
     disposition_1 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True)
-    disposition_2 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True)
-    disposition_3 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True)
+    disposition_2 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True, unique=True)
+    disposition_3 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True, unique=True)
 
 
 class Pet(models.Model):
@@ -89,5 +89,13 @@ class Pet(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, blank=False)
 
     # TO ADD:
-    # breed, picture_links, news blurb, dispositions
+    # breed -> I was struggling with this one, like if an admin is adding a new pet, and specifies that the pet is of
+    #           type dog, the "ideal" situation would be that only dog breeds would pop up, but I couldn't wrap my head
+    #           around how to do this in sql. not necessary though, just a thought .
+    # picture_links -> there's a special django way to do this. might need a table like Dispositions so we can have
+    #                   multiple pictures for one animal.
+    #                   Helpful ink: https://docs.djangoproject.com/en/3.1/faq/usage/#how-do-i-use-image-and-file-fields
+    # news blurb -> may need to be its own table?
+    # dispositions -> needs to be added as a foreign key to Pets
+
 
