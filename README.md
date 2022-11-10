@@ -1,8 +1,7 @@
 # OSU Capstone Project - Pet Adoption App
 Contributors: Sebastian Espinas, Shawn Kim, Lauren Ruff, Neil Thayamballi
 
-## Instructions: Running the Server Locally for viewing
-A deployed version of the project can be found at adoptr.pythonanywhere.com
+## View the deployed site at [adoptr.pythonanywhere.com](https://adoptr.pythonanywhere.com)
 
 ## Instructions: Running the Server Locally for development
 1. In the terminal or CLI, navigate to the top level folder of the project
@@ -45,12 +44,12 @@ A deployed version of the project can be found at adoptr.pythonanywhere.com
 Our team will be creating a dynamic website using Javascript and Python that matches adoptable animals with potential owners. It will be set up like a dating application where animals  will each have a profile with their basic information and owners will be able to conduct searches with optional filtering for their perfect match. This project will help our team increase their Javascript, Python, and SQL database abilities.  
 
 ### User Perspective
-From the user’s perspective, the website will provide an easy way to find a pet that matches their idea of a perfect match. This website will help those who are curious about potentially adopting a pet in the far future or those who are actively looking to adopt. Users can browse through the feed if they don’t have an idea on what kind of pet they are looking for, while users who know exactly what kind of pet they want can conduct a search with the appropriate filters to see if there is a match. The feed and search should be easy to navigate and always be up to date.  
+From the user’s perspective, the website will provide an easy way to find a pet that matches their idea of a perfect match. This website will help those who are curious about potentially adopting a pet in the far future or those who are actively looking to adopt. Users can browse through the feed if they don’t have an idea on what kind of pet they are looking for, while users who know exactly what kind of pet they want can conduct a search with the appropriate filters to see if there is a match. The feed and search should be easy to navigate and always be up-to-date.  
 
 ### Software Structure
 There will be three main components to the website: the user facing front end, the server-side backend, and the database.  
 The user-facing component is expected to have five pages. Entering the site will take the user to the Landing page which will show a feed of pet updates, whether they be newly added pets, updated pets, or adoption success stories. This page will also give the user the ability to log in, sign up, or search for a pet. Signing up with a public account will provide the user with a recognized profile that, when accessed at any point with logging in, will allow the user to contact the adoption agency about available pets. Navigating to the Search page will allow the user to search through all available pets and filter their search by type, breed, age, or disposition. There will be one Administrative Account that the adoption agency has access to. This will give the adoption agency the ability to add, update, and delete pets from the database.   
-The server-side backend will host and give the frontend access to those databases. The backend will also emulate a “secure login’ process by generating a hash of the user’s password and storing it for look up for future login attempts.  
+The server-side backend will host and give the frontend access to those databases. The backend will also emulate a "secure login" process by generating a hash of the user’s password and storing it for look up for future login attempts.  
 The main database is the PETS database. Each PET will have an ID, TYPE, BREED, AGE, DISPOSITION, PICTURE(S), AVAILABILITY, LOCATION, NEWS_ITEM, and DATE_CREATED. There will also be databases for TYPE, BREED, AGE, and DISPOSITION. This data will be pulled from to populate the Administration page and the Search page. The user’s login information will also be stored in a database, with an ID, EMAIL, and PASSWORD_HASH. 
 
 #### Database ER Diagram
