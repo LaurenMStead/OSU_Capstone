@@ -1,16 +1,16 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
     <div>
       <form action="/login" method="get">
         <label for="username">Username</label>&nbsp;&nbsp;
-        <input type="text" placeholder="Enter Username" name="username" required />
+        <input id="username" type="text" placeholder="Enter Username" name="username" required />
         <br></br>
         <br></br>
         <label for="password">Password</label>&nbsp;&nbsp;
-        <input type="password" placeholder="Enter Password" name="password" required />
+        <input id="password" type="password" placeholder="Enter Password" name="password" required />
         <br></br>
         <br></br>
         <Link to="/"><button type="submit">Login</button></Link>
