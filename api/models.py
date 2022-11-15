@@ -40,51 +40,103 @@ PET_AVAILABILITY_CHOICES = [
     (ADOPTED, 'Adopted')
 ]
 
+POODLE = 'Poodle'
+GERMAN_SHEPHERD = 'German Shepherd'
+CHIHUAHUA = 'Chihuahua'
+MUT = 'Mut'
+LABRADOR = 'Labrador'
+DSH = 'Domestic Short Hair'
+DLH = 'Domestic Long Hair'
+SIAMESE = 'Siamese'
+RUSSIAN_BLUE = 'Russian Blue'
+MAINE_COON = 'Main Coon'
+FISH = 'Fish'
+SNAKE = 'Snake'
+TURTLE = 'Turtle'
+IGUANA = 'Iguana'
+PET_BREED_CHOICES = [
+    (POODLE, 'Poodle'),
+    (GERMAN_SHEPHERD, 'German Shepherd'),
+    (CHIHUAHUA, 'Chihuahua'),
+    (MUT, 'Mut'),
+    (LABRADOR, 'Labrador'),
+    (DSH, 'Domestic Short Hair'),
+    (DLH, 'Domestic Long Hair'),
+    (SIAMESE, 'Siamese'),
+    (RUSSIAN_BLUE, 'Russian Blue'),
+    (MAINE_COON, 'Main Coon'),
+    (FISH, 'Fish'),
+    (SNAKE, 'Snake'),
+    (TURTLE, 'Turtle'),
+    (IGUANA, 'Iguana')
+]
 
-class Breeds(models.Model):
-    PET_BREED_CHOICES = [
-        ('Poodle', 'Poodle'),
-        ('German Shepherd', 'German Shepherd'),
-        ('Chihuahua', 'Chihuahua'),
-        ('Mut', 'Mut'),
-        ('Labrador', 'Labrador'),
-        ('DSH', 'Domestic Short Hair'),
-        ('DLH', 'Domestic Long Hair'),
-        ('Siamese', 'Siamese'),
-        ('Russian Blue', 'Russian Blue'),
-        ('Maine Coon', 'Maine Coon'),
-        ('Fish', 'Fish'),
-        ('Snake', 'Snake'),
-        ('Turtle', 'Turtle'),
-        ('Iguana', 'Iguana'),
+YES = 'Yes'
+NO = 'No'
+UNKNOWN = 'Unknown'
+
+PET_DISPOSITION_CHOICES = [
+    (YES, 'Yes'),
+    (NO, 'No'),
+    (UNKNOWN, 'Unknown'),
     ]
-    breed = models.CharField(max_length=50, choices=PET_BREED_CHOICES, blank=True)
 
 
-class Dispositions(models.Model):
+# class Breeds(models.Model):
+#     PET_BREED_CHOICES = [
+#         ('Poodle', 'Poodle'),
+#         ('German Shepherd', 'German Shepherd'),
+#         ('Chihuahua', 'Chihuahua'),
+#         ('Mut', 'Mut'),
+#         ('Labrador', 'Labrador'),
+#         ('DSH', 'Domestic Short Hair'),
+#         ('DLH', 'Domestic Long Hair'),
+#         ('Siamese', 'Siamese'),
+#         ('Russian Blue', 'Russian Blue'),
+#         ('Maine Coon', 'Maine Coon'),
+#         ('Fish', 'Fish'),
+#         ('Snake', 'Snake'),
+#         ('Turtle', 'Turtle'),
+#         ('Iguana', 'Iguana'),
+#     ]
+#     breed = models.CharField(max_length=50, choices=PET_BREED_CHOICES, blank=True)
 
-    OPTION_1 = 'Good with children'
-    OPTION_2 = 'Good with other animals'
-    OPTION_3 = 'Must be leashed at all times'
 
-    PET_DISPOSITION_CHOICES = [
-        (OPTION_1, 'Good with children'),
-        (OPTION_2, 'Good with other animals'),
-        (OPTION_3, 'Must be leashed at all times'),
+# class Dispositions(models.Model):
 
-    ]
-    disposition_1 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True)
-    disposition_2 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True, unique=True)
-    disposition_3 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True, unique=True)
+#     OPTION_1 = 'Good with children'
+#     OPTION_2 = 'Good with other animals'
+#     OPTION_3 = 'Must be leashed at all times'
+
+#     PET_DISPOSITION_CHOICES = [
+#         (OPTION_1, 'Good with children'),
+#         (OPTION_2, 'Good with other animals'),
+#         (OPTION_3, 'Must be leashed at all times'),
+
+#     ]
+#     disposition_1 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True)
+#     disposition_2 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True, unique=True)
+#     disposition_3 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True, unique=True)
 
 
 class Pet(models.Model):
     name = models.CharField(max_length=25, blank=False)
     type = models.CharField(max_length=10, choices=PET_TYPE_CHOICES, blank=False, default=DOG)
+    
+    breed = models.CharField(max_length=50, choices=PET_BREED_CHOICES, blank=True)
+    
     age = models.CharField(max_length=10, choices=PET_AGE_CHOICES, blank=False, default=BABY)
     gender = models.CharField(max_length=10, choices=PET_SEX_CHOICES, blank=False, default=MALE)
+    
+    good_with_children = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=False, default=UNKNOWN)
+    good_with_other_animals = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=False, default=UNKNOWN)
+    must_be_leashed = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=False, default=UNKNOWN)
+    
     availability = models.CharField(max_length=15, choices=PET_AVAILABILITY_CHOICES, blank=False, default=AVAILABLE)
     description = models.CharField(max_length=255, blank=True, default='')
+    
+    news_blurb = models.CharField(max_length=255, blank=True, default='')
+    
     last_updated = models.DateTimeField(auto_now=True, blank=False)
     date_created = models.DateTimeField(auto_now_add=True, blank=False)
 
