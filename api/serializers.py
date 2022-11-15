@@ -6,6 +6,7 @@ class PetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pet
         fields = ('id',
+                  'image',
                   'name',
                   'type',
                   'breed',

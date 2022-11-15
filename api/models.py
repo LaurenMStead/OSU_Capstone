@@ -120,34 +120,26 @@ PET_DISPOSITION_CHOICES = [
 
 
 class Pet(models.Model):
+    image = models.ImageField(upload_to='headshots', default='headshots/default.jpeg')
     name = models.CharField(max_length=25, blank=False)
     type = models.CharField(max_length=10, choices=PET_TYPE_CHOICES, blank=False, default=DOG)
-    
     breed = models.CharField(max_length=50, choices=PET_BREED_CHOICES, blank=True)
-    
     age = models.CharField(max_length=10, choices=PET_AGE_CHOICES, blank=False, default=BABY)
     gender = models.CharField(max_length=10, choices=PET_SEX_CHOICES, blank=False, default=MALE)
-    
     good_with_children = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=False, default=UNKNOWN)
     good_with_other_animals = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=False, default=UNKNOWN)
     must_be_leashed = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=False, default=UNKNOWN)
-    
     availability = models.CharField(max_length=15, choices=PET_AVAILABILITY_CHOICES, blank=False, default=AVAILABLE)
     description = models.CharField(max_length=255, blank=True, default='')
-    
     news_blurb = models.CharField(max_length=255, blank=True, default='')
-    
     last_updated = models.DateTimeField(auto_now=True, blank=False)
     date_created = models.DateTimeField(auto_now_add=True, blank=False)
 
-    # TO ADD:
-    # breed -> I was struggling with this one, like if an admin is adding a new pet, and specifies that the pet is of
-    #           type dog, the "ideal" situation would be that only dog breeds would pop up, but I couldn't wrap my head
-    #           around how to do this in sql. not necessary though, just a thought .
-    # picture_links -> there's a special django way to do this. might need a table like Dispositions so we can have
-    #                   multiple pictures for one animal.
-    #                   Helpful ink: https://docs.djangoproject.com/en/3.1/faq/usage/#how-do-i-use-image-and-file-fields
-    # news blurb -> may need to be its own table?
-    # dispositions -> needs to be added as a foreign key to Pets
+    # Notes:
+    # I went ahead and added all the rest of the information we needed for our table.  
+    # I organized the model to avoid any usage of foreign keys to make things as simple as possible. 
+    # I did leave the previous classes you created for dispositions and breeds (commented out) 
+    # just in case we want to revert back to it for some reason. 
+    
 
 
