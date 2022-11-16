@@ -1,44 +1,56 @@
 import React, { useState } from "react";
 
-const FilterBar = ({ }) => {
+const FilterBar = ({ filterPets }) => {
   const [type, setType] = useState(['dog', 'cat', 'others']);
   const [breed, setBreed] = useState({
-    dog: ['a', 'b', 'c', 'd', 'e'],
-    cat: ['a', 'b', 'c', 'd', 'e']
+    dog: ['doga', 'dogb', 'dogc', 'dogd', 'doge'],
+    cat: ['cata', 'catb', 'catc', 'catd', 'cate'],
+    other: ['a', 'b', 'c', 'd', 'e']
   });
   const [disposition, setDisposition] = useState(['Good with other animals', 'Good with children', 'Animal must be leashed at all times']);
   const [age, setAge] = useState(['Baby', 'Youth', 'Adult', 'Senior']);
-  const [selectedOptions, setSelectedOptions] = useState({
-    type: null,
-    breed: null,
-    disposition: null,
-    age: null
-  });
+  const [selectedType, setSelectedType] = useState('');
+  const [selectedBreed, setSelectedBreed] = useState([]);
+  const [selectedDisposition, setSelectedDisposition] = useState([]);
+  const [selectedAge, setSelectedAge] = useState([]);
 
-  const getDropdownOptions = (desc) => {
-    let optionList = desc;
-
-    // uses optgroup if it's listing for breed
-    if (desc.dog !== undefined) {
+  const getFilterBar = () => {
+    if (selectedType.length === 0) {
       return (
-        <select multiple>
-          <option disabled value={null}>
-            Select an option
-          </option>
-          {Object.keys(optionList).map((key, ind) => (
-            <optgroup label={key}>
-              {optionList[key].map((option, i) => (
-              <option key={option} value={option}>{option}</option>
-              ))}
-            </optgroup>
-          ))}
-        </select>
+        <>
+          <p>Type:</p>
+          <button onClick={() => setSelectedType('dog')} >Dog</button>
+          <button onClick={() => setSelectedType('cat')} >Cat</button>
+          <button onClick={() => setSelectedType('other')} >Other</button>
+        </>
       )
+    } else {
+      return (
+        <form >
+          <label for="breed">Breed:</label>
+          {getDropdownOptions('breed', breed[selectedType], setSelectedBreed)}
+          <label for="disposition">Disposition:</label>
+          {getDropdownOptions('disposition', disposition, setSelectedDisposition)}
+          <label for="age">Age:</label>
+          {getDropdownOptions('age', age, setSelectedAge)}
+          <input type="submit" value="Submit" onClick={() => filterPets({ type: selectedType, breed: selectedBreed, disposition: selectedDisposition, age: selectedAge })}/>
+        </form>
+      )
+    }
+  }
+
+  const getDropdownOptions = (optionName, optionList, stateSetter) => {
+
+    const handleChange = (e) => {
+      let options = [...document.getElementById(optionName).options];
+      let selected = options.filter(option => option.selected)
+      let values = selected.map(option => option.value);
+      stateSetter(values);
     }
 
     // lists normal drop down for all other filtering options, besides breed
     return (
-      <select >
+      <select name={optionName} id={optionName} onChange={(e) => handleChange(e)} multiple>
         <option disabled value={null}>
           Select an option
         </option>
@@ -51,17 +63,7 @@ const FilterBar = ({ }) => {
 
   return (
     <div>
-      <form >
-      <label for="type">Type:</label>
-      {getDropdownOptions(type)}
-      <label for="breed">Breed:</label>
-      {getDropdownOptions(breed)}
-      <label for="disposition">Disposition:</label>
-      {getDropdownOptions(disposition)}
-      <label for="age">Age:</label>
-      {getDropdownOptions(age)}
-      <input type="submit" value="Submit"/>
-      </form>
+      {getFilterBar()}
     </div>
   );
 }
