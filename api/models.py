@@ -54,6 +54,7 @@ FISH = 'Fish'
 SNAKE = 'Snake'
 TURTLE = 'Turtle'
 IGUANA = 'Iguana'
+OTHER = 'Other'
 PET_BREED_CHOICES = [
     (POODLE, 'Poodle'),
     (GERMAN_SHEPHERD, 'German Shepherd'),
@@ -68,7 +69,8 @@ PET_BREED_CHOICES = [
     (FISH, 'Fish'),
     (SNAKE, 'Snake'),
     (TURTLE, 'Turtle'),
-    (IGUANA, 'Iguana')
+    (IGUANA, 'Iguana'),
+    (OTHER, 'OTHER'),
 ]
 
 YES = 'Yes'
@@ -80,43 +82,6 @@ PET_DISPOSITION_CHOICES = [
     (NO, 'No'),
     (UNKNOWN, 'Unknown'),
     ]
-
-
-# class Breeds(models.Model):
-#     PET_BREED_CHOICES = [
-#         ('Poodle', 'Poodle'),
-#         ('German Shepherd', 'German Shepherd'),
-#         ('Chihuahua', 'Chihuahua'),
-#         ('Mut', 'Mut'),
-#         ('Labrador', 'Labrador'),
-#         ('DSH', 'Domestic Short Hair'),
-#         ('DLH', 'Domestic Long Hair'),
-#         ('Siamese', 'Siamese'),
-#         ('Russian Blue', 'Russian Blue'),
-#         ('Maine Coon', 'Maine Coon'),
-#         ('Fish', 'Fish'),
-#         ('Snake', 'Snake'),
-#         ('Turtle', 'Turtle'),
-#         ('Iguana', 'Iguana'),
-#     ]
-#     breed = models.CharField(max_length=50, choices=PET_BREED_CHOICES, blank=True)
-
-
-# class Dispositions(models.Model):
-
-#     OPTION_1 = 'Good with children'
-#     OPTION_2 = 'Good with other animals'
-#     OPTION_3 = 'Must be leashed at all times'
-
-#     PET_DISPOSITION_CHOICES = [
-#         (OPTION_1, 'Good with children'),
-#         (OPTION_2, 'Good with other animals'),
-#         (OPTION_3, 'Must be leashed at all times'),
-
-#     ]
-#     disposition_1 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True)
-#     disposition_2 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True, unique=True)
-#     disposition_3 = models.CharField(max_length=50, choices=PET_DISPOSITION_CHOICES, blank=True, unique=True)
 
 
 class Pet(models.Model):
@@ -134,12 +99,3 @@ class Pet(models.Model):
     news_blurb = models.CharField(max_length=255, blank=True, default='')
     last_updated = models.DateTimeField(auto_now=True, blank=False)
     date_created = models.DateTimeField(auto_now_add=True, blank=False)
-
-    # Notes:
-    # I went ahead and added all the rest of the information we needed for our table.  
-    # I organized the model to avoid any usage of foreign keys to make things as simple as possible. 
-    # I did leave the previous classes you created for dispositions and breeds (commented out) 
-    # just in case we want to revert back to it for some reason. 
-    
-
-
