@@ -31,7 +31,7 @@ const FilterBar = ({ filterPets, resetPets }) => {
 
   const getDropdownOptions = (optionName, optionList, stateSetter) => {
 
-    const handleChange = (e) => {
+    const handleChange = () => {
       let options = [...document.getElementById(optionName).options];
       let selected = options.filter(option => option.selected)
       let values = selected.map(option => option.value);
@@ -40,12 +40,9 @@ const FilterBar = ({ filterPets, resetPets }) => {
 
     // lists normal drop down for all other filtering options, besides breed
     return (
-      <select className="filterBar_select" name={optionName} id={optionName} onChange={(e) => handleChange(e)} multiple>
-        <option className="filterBar_option" disabled value={null}>
-          Select an option
-        </option>
+      <select className="FilterBar_select" name={optionName} id={optionName} onChange={(e) => handleChange(e)} multiple>
         {optionList.map((option, i) => (
-          <option className="filterBar_option" key={option} value={option}>{option}</option>
+          <option id={option} className="FilterBar_option" key={option} value={option} >{option}</option>
         ))}
       </select>
     )
@@ -54,24 +51,30 @@ const FilterBar = ({ filterPets, resetPets }) => {
   const getFilterBar = () => {
     if (!selectedType) {
       return (
-        <form id="filterType">
-          <p>Type:</p>
-          <button onClick={(event) => clickType(event, 'dog')} >Dog</button>
-          <button onClick={(event) => clickType(event, 'cat')} >Cat</button>
-          <button onClick={(event) => clickType(event, 'other')} >Other</button>
+        <form className="FilterBar">
+          <fieldset className="FilterBar_fieldset">
+            <legend>Filter by Type in order to see more filtering options</legend>
+            <button className="FilterBar_button" onClick={(event) => clickType(event, 'dog')} >Dog</button>
+            <button className="FilterBar_button" onClick={(event) => clickType(event, 'cat')} >Cat</button>
+            <button className="FilterBar_button" onClick={(event) => clickType(event, 'other')} >Other</button>
+          </fieldset>
         </form>
       )
     } else {
       return (
-        <form id="filterBar">
-          <label className="filterBar_label" for="breed">Breed:</label>
-          {getDropdownOptions('breed', breed[selectedType], setSelectedBreed)}
-          <label className="filterBar_label" for="disposition">Disposition:</label>
-          {getDropdownOptions('disposition', disposition, setSelectedDisposition)}
-          <label className="filterBar_label" for="age">Age:</label>
-          {getDropdownOptions('age', age, setSelectedAge)}
-          <input className="filterBar_submit" type="submit" value="Submit" onClick={(event) => filterPets(event, { type: selectedType, breed: selectedBreed, disposition: selectedDisposition, age: selectedAge })}/>
-          <input className="filterBar_reset" type="submit" value="Reset" onClick={(event) => clickReset(event)}/>
+        <form className="FilterBar">
+          <fieldset className="FilterBar_fieldset">
+          <legend>You may select multiple of each category.</legend>
+            <label className="FilterBar_label" for="breed">Breed:</label>
+            {getDropdownOptions('breed', breed[selectedType], setSelectedBreed)}
+            <label className="FilterBar_label" for="disposition">Disposition:</label>
+            {getDropdownOptions('disposition', disposition, setSelectedDisposition)}
+            <label className="FilterBar_label" for="age">Age:</label>
+            {getDropdownOptions('age', age, setSelectedAge)}
+
+            <button className="FilterBar_button" onClick={(event) => filterPets(event, { type: selectedType, breed: selectedBreed, disposition: selectedDisposition, age: selectedAge })}>Submit</button>
+            <button className="FilterBar_button" onClick={(event) => clickReset(event)}>Reset</button>
+          </fieldset>
         </form>
       )
     }

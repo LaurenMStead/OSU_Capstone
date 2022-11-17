@@ -23,9 +23,12 @@ export default function Browse({ pets, selectPet }) {
     }
 
   return (
-    <div>
-        <h1>Browse our available pets!</h1>
-        <ProfileCard pet={spotlightPet} selectPet={selectPet} key="profileCard" getNextSpotlightPet={getNextSpotlightPet} />
+    <div id="Browse">
+        <h1 className="Browse_header">Meet your next best friend!</h1>
+        <div className="Browse_profileCard">
+            <ProfileCard pet={spotlightPet} selectPet={selectPet} key="profileCard" getNextSpotlightPet={getNextSpotlightPet} />
+        </div>
+
     </div>
   );
 }

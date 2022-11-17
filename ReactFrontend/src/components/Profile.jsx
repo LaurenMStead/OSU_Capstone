@@ -20,10 +20,10 @@ const Profile = ({ pet }) => {
     const getSubmitButton = () => {
         return (
             availability === 'Available' || 'Pending' ?
-                <button id='adoptBtn' onClick={() => adoptPet(pet)}>Adopt Me</button>
+                <button className="Profile_button" onClick={() => adoptPet(pet)}>Adopt Me</button>
             :
                 <button
-                    id='adoptBtn'
+                    className="Profile_button"
                     onClick={() => adoptPet(pet)}
                     title="Unavailable for adoption"
                     disabled>

@@ -1,3 +1,7 @@
+/*
+TO-DO: pick a color scheme for the whole site
+*/
+
 body, h1 {
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif
@@ -19,6 +23,7 @@ body, h1 {
   display: flex;
   align-self: center;
   width: 90%;
+  margin-left: 25px;
   color: white;
   font-size: 50px;
 }
@@ -39,4 +44,100 @@ body, h1 {
 
 .NavBar_homeButton:hover, .NavBar_searchButton:hover, .NavBar_browseButton:hover, .NavBar_loginButton:hover {
   color: lightblue;
+}
+
+.FilterBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  min-height: 80px;
+  background-color: lightgrey;
+}
+
+.FilterBar_fieldset {
+  display: flex;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.FilterBar_button, .ProfileCard_button, .Profile_button {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  justify-content: center;
+  margin: 5px 10px;
+  width: 120px;
+  max-height: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 30px;
+  box-shadow: black 5px 5px 0 0;
+}
+
+.FilterBar_typeButton:hover, .ProfileCard_button:hover, .Profile_button:hover  {
+  background-color: lightyellow;
+  cursor: pointer;
+}
+
+.FilterBar_typeButton:active, .ProfileCard_button:active, .Profile_button:active  {
+  box-shadow: black 2px 2px 0 0;
+}
+
+.FilterBar_label {
+  display: flex;
+  margin: 5px;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  align-self: flex-start; /* TO-DO: Do we want it at the top or center?*/
+}
+
+.FilterBar_select {
+  display: flex;
+  width: 300px;
+  height: 80px;
+}
+
+.FilterBar_option {
+  font-size: 16px;
+}
+
+#Browse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.Browse_header {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  width: 45%;
+  border: 3px dotted black;
+  border-radius: 20px;
+}
+
+.Browse_profileCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45%;
+  padding: 30px;
+  border: 3px dotted black;
+  border-radius: 20px;
+}
+
+#ProfileCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
