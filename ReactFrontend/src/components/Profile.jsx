@@ -33,7 +33,6 @@ const Profile = ({ pet }) => {
 
     return (
         <div>
-        <div className="ProfileCard_image"> pet image here</div>
             <table>
                 <tr>
                     <td>
