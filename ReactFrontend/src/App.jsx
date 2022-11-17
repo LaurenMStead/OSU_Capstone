@@ -9,13 +9,13 @@ import Search from "./components/Search.jsx"
 import ProfileList from './components/ProfileList.jsx';
 import Profile from "./components/Profile.jsx"
 import NavBar from './components/NavBar.jsx';
-// import { sampleData } from './sampleData.js';
+import { sampleData } from './sampleData.js';
 
 function App() {
-  const [pets, setPets] = useState([]);
+  const [pets, setPets] = useState(sampleData);
   const [selectedPet, setSelectedPet] = useState({});
   const navigate = useNavigate();
-
+/*
   useEffect(() => {
       fetch('http://127.0.0.1:8000/api/pets')
         .then((response) => response.json())
@@ -24,7 +24,7 @@ function App() {
         })
         .catch(err => console.log(err))
   }, []);
-
+*/
   const selectPet = (selectedPet) => {
     // set pet to the selected pet
     setSelectedPet(selectedPet);
