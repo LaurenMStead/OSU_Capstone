@@ -8,18 +8,22 @@ body, h1 {
 }
 
 #ProfileCard_name {
+  margin-left: 0px;
   text-align: center;
 }
 
 #ProfileCard_age {
+  margin-left: 0px;
   text-align: center;
 }
 
 #ProfileCard_gender {
+  margin-left: 0px;
   text-align: center;
 }
 
 #ProfileCard_availability {
+  margin-left: 0px;
   text-align: center;
 }
 
@@ -169,12 +173,14 @@ body, h1 {
 
 p {
   font-family: Georgia, 'Times New Roman', Times, serif;
+  margin-left: 15px;
   text-align: left;
 }
 
 h2 {
   font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
+  margin-left: 15px;
 }
 
 .center {
