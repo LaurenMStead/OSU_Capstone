@@ -19,9 +19,9 @@ export default function ProfileCard({ pet, selectPet, getNextSpotlightPet }) {
                 {pet.name}
             </h1>
             <div className="ProfileCard_info">
-                <p className="ProfileCard_age" id = "ProfileCard_age">{pet.age}</p>
-                <p className="ProfileCard_gender" id = "ProfileCard_gender">{pet.gender}</p>
-                <p className="ProfileCard_availability" id = "ProfileCard_availability">{pet.availability}</p>
+                <p className="ProfileCard_age" id = "ProfileCard_age">Age: {pet.age}</p>
+                <p className="ProfileCard_gender" id = "ProfileCard_gender">Gender: {pet.gender}</p>
+                <p className="ProfileCard_availability" id = "ProfileCard_availability">Availability: {pet.availability}</p>
             </div>
             {viewBrowseFeature()}
         </div>
