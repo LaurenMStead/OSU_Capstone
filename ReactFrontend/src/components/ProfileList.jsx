@@ -3,7 +3,7 @@ import ProfileCard from './ProfileCard.jsx';
 
 const ProfileList = ({ pets, selectPet }) => {
   return (
-    <div>
+    <div id="ProfileList">
       {pets.map((pet) => <ProfileCard pet={pet} selectPet={selectPet} key={pet.id} />)}
     </div>
   );
