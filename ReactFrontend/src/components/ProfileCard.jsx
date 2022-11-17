@@ -6,8 +6,8 @@ export default function ProfileCard({ pet, selectPet, getNextSpotlightPet }) {
         if (getNextSpotlightPet) {
             return (
                 <>
-                    <button className="ProfileCard_button" onClick={() => getNextSpotlightPet()} >Next Pet</button>
                     <button className="ProfileCard_button" onClick={() => selectPet(pet)} >Learn More</button>
+                    <button className="ProfileCard_button" onClick={() => getNextSpotlightPet()} >Next Pet</button>
                 </>
             )
         }
