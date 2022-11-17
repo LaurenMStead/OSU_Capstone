@@ -9,7 +9,7 @@ import Search from "./components/Search.jsx"
 import ProfileList from './components/ProfileList.jsx';
 import Profile from "./components/Profile.jsx"
 import NavBar from './components/NavBar.jsx';
-// import NavbarCollapse from "react-bootstrap/NavbarCollapse";
+// import { sampleData } from './sampleData.js';
 
 function App() {
   const [pets, setPets] = useState([]);
@@ -31,6 +31,7 @@ function App() {
     // navigate to '/pet/:pet_id
     navigate(`/pet/${selectedPet.id}`);
   }
+
   /*
   Updates from Lauren:
     I wanted to make sure this would render for you before pushing it.
@@ -45,7 +46,6 @@ function App() {
    */
   return (
       <div>
-        <h1>ADOPTR</h1>
         <NavBar/>
         <Routes>
           <Route path="feed" element={<ProfileList pets={pets} selectPet={selectPet} />} />

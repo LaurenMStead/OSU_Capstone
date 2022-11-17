@@ -2,7 +2,18 @@ import React from "react";
 
 //TO DO: activate the button, redirect to "profile" and send the pet_id
 
-export default function ProfileCard({ pet, selectPet }) {
+export default function ProfileCard({ pet, selectPet, getNextSpotlightPet }) {
+
+    const viewBrowseFeature = () => {
+        if (getNextSpotlightPet) {
+            return (
+                <>
+                    <button id='rejectBtn' onClick={() => getNextSpotlightPet()} >View another pet</button>
+                    <button id='acceptBtn' onClick={() => selectPet(pet)} >Learn more</button>
+                </>
+            )
+        }
+    }
     return (
         <div id='profileCard'>
             <div className='profileImg'> pet image here</div>
@@ -14,7 +25,7 @@ export default function ProfileCard({ pet, selectPet }) {
                 <p>{pet.gender}</p>
                 <p>{pet.availability}</p>
             </div>
-            <button id='learnMoreBtn' onClick={() => selectPet(pet)} >Learn more</button>
+            {viewBrowseFeature()}
         </div>
     );
 }

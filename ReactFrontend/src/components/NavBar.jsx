@@ -12,6 +12,7 @@ const NavBar = () =>  {
   // }
     return (
       <div id = "NavBar">
+        <h1>ADOPTR</h1>
         <NavLink id="homeButton" to="/" style={{margin: 10}}> Home </NavLink>
         <NavLink id="searchButton" to="/search" style={{margin: 10}}> Search </NavLink>
         <NavLink id="browseButton" to="/browse" style={{margin: 10}}> Browse </NavLink>

@@ -5,29 +5,34 @@ import ProfileList from './ProfileList.jsx';
 const Search = ({pets, selectPet}) => {
   const [filteredPets, setFilteredPets] = useState(pets);
 
-  const filterPets = (selectedOptions) => {
+  const filterPets = (event, selectedOptions) => {
+    event.preventDefault();
+
     let newFilteredPets = filteredPets.filter(pet => {
-      let hasType = pet.type === selectedOptions.type;
-      let hasBreed = selectedOptions.breed.indexOf(pet.breed) !== -1;
-      let hasAge = selectedOptions.age.indexOf(pet.age) !== -1;
+      let hasType = !selectedOptions.type || pet.type.toLowerCase() === selectedOptions.type;
+      let hasBreed = selectedOptions.breed.length === 0 || selectedOptions.breed.indexOf(pet.breed) !== -1;
+      let hasAge = selectedOptions.age.length === 0 || selectedOptions.age.indexOf(pet.age) !== -1;
+      let hasDisposition = true;
 
       for (let i = 0; i < selectedOptions.disposition.length; i++) {
         if (pet.disposition.indexOf(selectedOptions.disposition[i]) === -1) {
-          // return false if dispo is not found
-          return false;
+          hasDisposition = false;
+          break;
         }
       }
 
-      return hasType && hasBreed && hasAge
+      return hasType && hasBreed && hasAge && hasDisposition;
     })
-
     setFilteredPets(newFilteredPets);
+  }
+
+  const resetPets = () => {
+    setFilteredPets(pets);
   }
 
   return (
     <div>
-      <h1>This is the Search page</h1>
-      {<FilterBar filterPets={filterPets} />}
+      {<FilterBar filterPets={filterPets} resetPets={resetPets} />}
       {<ProfileList pets={filteredPets} selectPet={selectPet}/>}
     </div>
   );
