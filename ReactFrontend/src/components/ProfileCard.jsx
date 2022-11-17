@@ -15,7 +15,7 @@ export default function ProfileCard({ pet, selectPet, getNextSpotlightPet }) {
     return (
         <div id="ProfileCard">
             <div className="ProfileCard_image"> pet image here</div>
-            <h1 className="ProfileCard_name id = "ProfileCard_name"">
+            <h1 className="ProfileCard_name" id = "ProfileCard_name">
                 {pet.name}
             </h1>
             <div className="ProfileCard_info">
