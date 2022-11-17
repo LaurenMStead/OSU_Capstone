@@ -37,12 +37,12 @@ const Profile = ({ pet }) => {
                 <tr>
                     <td>
                         <h2>{pet.name}</h2>
-                        <p>Joined: {pet.date_created}</p>
-                        <p>Age: {pet.age}</p>
-                        <p>Gender: {pet.gender}</p>
-                        <p>About Me: {pet.description}</p>
-                        <p>Availability: {availability}</p>
-                        <p>Contact: <MdPhone/><MdEmail/></p>
+                        <p><b>Joined:</b> {pet.date_created}</p>
+                        <p><b>Age:</b> {pet.age}</p>
+                        <p><b>Gender:</b> {pet.gender}</p>
+                        <p><b>About Me:</b> {pet.description}</p>
+                        <p><b>Availability:</b> {availability}</p>
+                        <p><b>Contact:</b> <MdPhone/><MdEmail/></p>
                         <p>Last updated on {pet.last_updated}</p>
                         {getSubmitButton()}
                     </td>
