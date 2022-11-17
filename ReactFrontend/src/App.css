@@ -4,7 +4,23 @@ TO-DO: pick a color scheme for the whole site
 
 body, h1 {
   margin: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#ProfileCard_name {
+  text-align: center;
+}
+
+#ProfileCard_age {
+  text-align: center;
+}
+
+#ProfileCard_gender {
+  text-align: center;
+}
+
+#ProfileCard_availability {
+  text-align: center;
 }
 
 *, *::before, *::after {
@@ -149,4 +165,21 @@ body, h1 {
   padding: 50px;
   justify-content: flex-start;
   gap: 100px;
+}
+
+p {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: left;
+}
+
+h2 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
