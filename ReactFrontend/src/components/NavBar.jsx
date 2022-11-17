@@ -5,11 +5,11 @@ const NavBar = () =>  {
     return (
       <div id="NavBar">
         <h1 className="NavBar_header">ADOPTR</h1>
-        <div className="NavBar_buttons">
-          <NavLink className="NavBar_homeButton" to="/">Home</NavLink>
-          <NavLink className="NavBar_searchButton" to="/search">Search</NavLink>
-          <NavLink className="NavBar_browseButton" to="/browse">Browse</NavLink>
-          <NavLink className="NavBar_loginButton" to="/login">Login</NavLink>
+        <div className="NavBar_links">
+          <NavLink className="NavBar_homeLink" to="/">Home</NavLink>
+          <NavLink className="NavBar_searchLink" to="/search">Search</NavLink>
+          <NavLink className="NavBar_browseLink" to="/browse">Browse</NavLink>
+          <NavLink className="NavBar_loginLink" to="/login">Login</NavLink>
         </div>
       </div>
     );

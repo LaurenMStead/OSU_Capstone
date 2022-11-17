@@ -28,21 +28,21 @@ body, h1 {
   font-size: 50px;
 }
 
-.NavBar_buttons {
+.NavBar_links {
   display: flex;
   align-self: flex-end;
   margin: 0 0 15px 0;
   font-size: 20px;
 }
 
-.NavBar_homeButton, .NavBar_searchButton, .NavBar_browseButton, .NavBar_loginButton {
+.NavBar_homeLink, .NavBar_searchLink, .NavBar_browseLink, .NavBar_loginLink {
   margin: 0 10px;
   padding: 0 10px;
   color: white;
   text-decoration: none;
 }
 
-.NavBar_homeButton:hover, .NavBar_searchButton:hover, .NavBar_browseButton:hover, .NavBar_loginButton:hover {
+.NavBar_homeLink:hover, .NavBar_searchLink:hover, .NavBar_browseLink:hover, .NavBar_loginLink:hover {
   color: lightblue;
 }
 
@@ -65,7 +65,7 @@ body, h1 {
   margin-bottom: 5px;
 }
 
-.FilterBar_button, .ProfileCard_button, .Profile_button {
+.FilterBar_button, .ProfileCard_button, .Profile_button, .Login_button, .Signup_button {
   display: flex;
   align-items: center;
   align-self: flex-end;
@@ -81,12 +81,12 @@ body, h1 {
   box-shadow: black 5px 5px 0 0;
 }
 
-.FilterBar_typeButton:hover, .ProfileCard_button:hover, .Profile_button:hover  {
+.FilterBar_typeButton:hover, .ProfileCard_button:hover, .Profile_button:hover, .Login_button:hover, .Signup_button:hover  {
   background-color: lightyellow;
   cursor: pointer;
 }
 
-.FilterBar_typeButton:active, .ProfileCard_button:active, .Profile_button:active  {
+.FilterBar_typeButton:active, .ProfileCard_button:active, .Profile_button:active, .Login_button:active, .Signup_button:active  {
   box-shadow: black 2px 2px 0 0;
 }
 

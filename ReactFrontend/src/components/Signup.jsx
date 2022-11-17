@@ -3,17 +3,15 @@ import {Link} from "react-router-dom";
 
 const Signup = () => {
   return (
-    <div>
+    <div id="Signup">
       <form action="/signup" method="post">
         <label for="username">Username</label>&nbsp;&nbsp;
         <input type="text" placeholder="Enter Username" name="username" required />
-        <br></br>
-        <br></br>
+
         <label for="password">Password</label>&nbsp;&nbsp;
         <input type="password" placeholder="Enter Password" name="password" required />
-        <br></br>
-        <br></br>
-        <Link to="/"><button type="submit">Signup</button></Link>
+
+        <Link to="/"><button className="Signup_button" type="submit">Signup</button></Link>
       </form>
     </div>
   );
