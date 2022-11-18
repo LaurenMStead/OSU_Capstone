@@ -13,6 +13,7 @@ const Search = ({pets, selectPet}) => {
       let hasBreed = selectedOptions.breed.length === 0 || selectedOptions.breed.indexOf(pet.breed) !== -1;
       let hasAge = selectedOptions.age.length === 0 || selectedOptions.age.indexOf(pet.age) !== -1;
       let hasDisposition = true;
+      let hasGender = !selectedOptions.gender || pet.gender === selectedOptions.gender;
 
       for (let i = 0; i < selectedOptions.disposition.length; i++) {
         if (pet.disposition.indexOf(selectedOptions.disposition[i]) === -1) {
@@ -21,7 +22,7 @@ const Search = ({pets, selectPet}) => {
         }
       }
 
-      return hasType && hasBreed && hasAge && hasDisposition;
+      return hasType && hasBreed && hasAge && hasDisposition && hasGender;
     })
     setFilteredPets(newFilteredPets);
   }

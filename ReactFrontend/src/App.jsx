@@ -9,13 +9,16 @@ import Search from "./components/Search.jsx"
 import ProfileList from './components/ProfileList.jsx';
 import Profile from "./components/Profile.jsx"
 import NavBar from './components/NavBar.jsx';
+import NewPet from './components/NewPet.jsx';
 import { sampleData } from './sampleData.js';
 
 function App() {
   const [pets, setPets] = useState(sampleData);
   const [selectedPet, setSelectedPet] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isAdmin, setIsAdmin] = useState(true);
   const navigate = useNavigate();
+
 /*
   useEffect(() => {
       fetch('http://127.0.0.1:8000/api/pets')
@@ -25,8 +28,11 @@ function App() {
           setPets(data.pets);
         })
         .catch(err => console.log(err))
+
+      fetch('http://127.0.0.1:8000/api/')
   }, []);
 */
+
   const selectPet = (selectedPet) => {
     // set pet to the selected pet
     setSelectedPet(selectedPet);
@@ -35,15 +41,16 @@ function App() {
   }
 
   return (
-      <div>
-        <NavBar/>
+      <div id="App">
+        <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin}/>
         <Routes>
           <Route path="feed" element={<ProfileList pets={pets} selectPet={selectPet} />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />} />
+          <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />} />
           <Route path="/browse" element={<Browse pets={pets} selectPet={selectPet} />} />
           <Route path="/search" element={<Search pets={pets} selectPet={selectPet} />} />
           <Route path="/pet/:id" element={<Profile isAdmin={isAdmin} pet={selectedPet} />} />
+          <Route path="/newPet" element={<NewPet />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="/" element={<Navigate to="/feed" replace />} />
         </Routes>

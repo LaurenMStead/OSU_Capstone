@@ -1,20 +1,19 @@
-/*
-TO-DO: pick a color scheme for the whole site
-*/
-
 body, h1 {
   margin: 0;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Optima, sans-serif;
+  background-color: #DBF3FA;
+}
+
+a {
+  text-decoration: none;
 }
 
 p {
-  font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: left;
   margin-left: 15px;
 }
 
 h2 {
-  font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
   margin-left: 15px;
 }
@@ -24,127 +23,6 @@ h2 {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-}
-
-#ProfileCard_name {
-  margin-left: 0px;
-  text-align: center;
-}
-
-#ProfileCard_age {
-  margin-left: 0px;
-  text-align: center;
-}
-
-#ProfileCard_gender {
-  margin-left: 0px;
-  text-align: center;
-}
-
-#ProfileCard_availability {
-  margin-left: 0px;
-  text-align: center;
-}
-
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-
-#NavBar {
-  display: flex;
-  width: 100%;
-  min-height: 80px;
-  background-color: #282c34;
-}
-
-.NavBar_header {
-  display: flex;
-  align-self: center;
-  width: 90%;
-  margin-left: 25px;
-  color: white;
-  font-size: 50px;
-}
-
-.NavBar_links {
-  display: flex;
-  align-self: flex-end;
-  margin: 0 0 15px 0;
-  font-size: 20px;
-}
-
-.NavBar_homeLink, .NavBar_searchLink, .NavBar_browseLink, .NavBar_loginLink {
-  margin: 0 10px;
-  padding: 0 10px;
-  color: white;
-  text-decoration: none;
-}
-
-.NavBar_homeLink:hover, .NavBar_searchLink:hover, .NavBar_browseLink:hover, .NavBar_loginLink:hover {
-  color: lightblue;
-}
-
-.FilterBar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  width: 100%;
-  min-height: 80px;
-  background-color: lightgrey;
-}
-
-.FilterBar_fieldset {
-  display: flex;
-  padding: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 5px;
-}
-
-.FilterBar_button, .ProfileCard_button, .Profile_button, .Login_button, .Signup_button {
-  display: flex;
-  align-items: center;
-  align-self: flex-end;
-  justify-content: center;
-  margin: 5px 10px;
-  width: 120px;
-  max-height: 30px;
-  font-weight: 600;
-  font-size: 16px;
-  background-color: white;
-  border: 2px solid black;
-  border-radius: 30px;
-  box-shadow: black 5px 5px 0 0;
-}
-
-.FilterBar_typeButton:hover, .ProfileCard_button:hover, .Profile_button:hover, .Login_button:hover, .Signup_button:hover  {
-  background-color: lightyellow;
-}
-
-.FilterBar_typeButton:active, .ProfileCard_button:active, .Profile_button:active, .Login_button:active, .Signup_button:active  {
-  box-shadow: black 2px 2px 0 0;
-}
-
-.FilterBar_label {
-  display: flex;
-  margin: 5px;
-  margin-left: 20px;
-  font-weight: bold;
-  font-size: 16px;
-  align-self: flex-start; /* TO-DO: Do we want it at the top or center?*/
-}
-
-.FilterBar_select {
-  display: flex;
-  width: 300px;
-  height: 80px;
-}
-
-.FilterBar_option {
-  font-size: 16px;
 }
 
 #Browse {
@@ -174,10 +52,152 @@ h2 {
   border-radius: 20px;
 }
 
+.FilterBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  min-height: 80px;
+  background-color: lightgrey;
+}
+
+.FilterBar_fieldset {
+  display: flex;
+  padding: 15px;
+  margin: 10px auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.FilterBar_label {
+  display: flex;
+  margin: 5px;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  align-self: flex-start; /* TO-DO: Do we want it at the top or center?*/
+}
+
+.FilterBar_select {
+  display: flex;
+  width: 300px;
+  height: 60px;
+}
+
+.FilterBar_option {
+  font-size: 16px;
+}
+
+#NavBar {
+  display: flex;
+  width: 100%;
+  min-height: 80px;
+  background-color: #282c34;
+}
+
+.NavBar_header {
+  display: flex;
+  align-self: center;
+  width: 90%;
+  margin-left: 25px;
+  color: white;
+  font-size: 50px;
+  background-color: #282c34;
+}
+
+.NavBar_linkContainer {
+  display: flex;
+  align-self: flex-end;
+  margin: 0 0 15px 0;
+  font-size: 20px;
+}
+
+.NavBar_link {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 10px;
+  padding: 0 10px;
+  color: white;
+}
+
+.NavBar_link:hover {
+  color: lightblue;
+}
+
+#NewPet, #Login, #Signup {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  align-items: center;
+}
+
+.NewPet_button {
+  align-self: center !important;
+}
+
+.NewPet_outerFieldset, .NewPet_innerFieldset, .Login_outerFieldset, .Login_innerFieldset, .Signup_outerFieldset, .Signup_innerFieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  background-color: #F5F5F5;
+}
+
+.NewPet_innerFieldset, .Login_innerFieldset, .Signup_innerFieldset {
+  border: 1px dotted black;
+}
+
+.NewPet_label, .Login_label, .Signup_label {
+  display: flex;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.NewPet_select, .Login_input, .Signup_input {
+  display: flex;
+  margin-bottom: 30px;
+  font-size: 14px;
+  width: 200px;
+}
+
+.NewPet_option {
+  display: flex;
+  width: fit-content;
+  font-size: 14px;
+}
+
+textarea {
+  width: 400px !important;
+  height: 200px;
+}
+
 #ProfileCard {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#ProfileCard_name {
+  margin-left: 0px;
+  text-align: center;
+}
+
+#ProfileCard_age {
+  margin-left: 0px;
+  text-align: center;
+}
+
+#ProfileCard_gender {
+  margin-left: 0px;
+  text-align: center;
+}
+
+#ProfileCard_availability {
+  margin-left: 0px;
+  text-align: center;
 }
 
 #ProfileList {
@@ -188,3 +208,43 @@ h2 {
   justify-content: flex-start;
   gap: 100px;
 }
+
+.ProfileList_empty {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.Login_button, .Signup_button {
+  align-self: center !important;
+}
+
+.Login_createButton, .Signup_loginButton {
+  width: fit-content !important;
+  text-decoration: none;
+}
+
+/* All buttons in the site */
+.FilterBar_button, .ProfileCard_button, .Profile_button, .Login_button, .Signup_button, .NewPet_button, .Login_createButton, .Signup_loginButton {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  justify-content: center;
+  margin: 5px 10px;
+  width: 120px;
+  max-height: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 30px;
+  box-shadow: black 5px 5px 0 0;
+}
+
+.FilterBar_button:hover, .ProfileCard_button:hover, .Profile_button:hover, .Login_button:hover, .Signup_button:hover, .NewPet_button:hover, .Login_createButton:hover, .Signup_loginButton:hover  {
+  background-color: lightblue;
+}
+
+.FilterBar_button:active, .ProfileCard_button:active, .Profile_button:active, .Login_button:active, .Signup_button:active, .NewPet_button:active, .Login_createButton:active, .Signup_loginButton:active  {
+  box-shadow: black 2px 2px 0 0;
+}
+

@@ -15,7 +15,7 @@ export default function ProfileCard({ pet, selectPet, getNextSpotlightPet }) {
     return (
         <div id="ProfileCard">
             <div className="ProfileCard_image" onClick={() => selectPet(pet)}> pet image here</div>
-            <h1 className="ProfileCard_name" id = "ProfileCard_name">
+            <h1 className="ProfileCard_name" id="ProfileCard_name" onClick={() => selectPet(pet)}>
                 {pet.name}
             </h1>
             <div className="ProfileCard_info">
@@ -27,3 +27,8 @@ export default function ProfileCard({ pet, selectPet, getNextSpotlightPet }) {
         </div>
     );
 }
+
+/*
+When image links are ready, use:
+    <img className="ProfileCard_image" src={pet.image} onClick={() => selectPet(pet)}/>
+*/

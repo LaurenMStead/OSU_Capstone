@@ -4,7 +4,7 @@ import ProfileCard from './ProfileCard.jsx';
 const ProfileList = ({ pets, selectPet }) => {
   return (
     <div id="ProfileList">
-      {pets.map((pet) => <ProfileCard pet={pet} selectPet={selectPet} key={pet.id} />)}
+      {pets.length === 0 ? <h2 className="ProfileList_empty">No pets fit those options! Try a different search.</h2> : pets.map((pet) => <ProfileCard pet={pet} selectPet={selectPet} key={pet.id} />)}
     </div>
   );
 }

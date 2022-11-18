@@ -36,7 +36,7 @@ const Profile = ({ isAdmin, pet }) => {
             isAdmin === true ?
                 <button className="Profile_button" onClick={() => adoptPet(pet)}>Edit</button>
             :
-                ''
+                null
         )
     }
 
