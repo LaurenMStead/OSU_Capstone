@@ -14,7 +14,7 @@ class PetSerializer(serializers.ModelSerializer):
                   'gender',
                   'good_with_children',
                   'good_with_other_animals',
-                  'must_be_leashed'
+                  'must_be_leashed',
                   'availability',
                   'description',
                   'news_blurb',
