@@ -5,10 +5,10 @@ const Login = () => {
   return (
     <div id="Login">
       <form action="/login" method="get">
-        <label for="username">Username</label>&nbsp;&nbsp;
+        <label for="username">Username</label>
         <input id="username" type="text" placeholder="Enter Username" name="username" required />
 
-        <label for="password">Password</label>&nbsp;&nbsp;
+        <label for="password">Password</label>
         <input id="password" type="password" placeholder="Enter Password" name="password" required />
 
         <Link to="/"><button className="Login_button" type="submit">Login</button></Link>
