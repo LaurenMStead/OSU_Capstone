@@ -14,12 +14,14 @@ import { sampleData } from './sampleData.js';
 function App() {
   const [pets, setPets] = useState(sampleData);
   const [selectedPet, setSelectedPet] = useState({});
+  const [isAdmin, setIsAdmin] = useState(true);
   const navigate = useNavigate();
 /*
   useEffect(() => {
       fetch('http://127.0.0.1:8000/api/pets')
         .then((response) => response.json())
         .then((data) => {
+          console.log(data.pets);
           setPets(data.pets);
         })
         .catch(err => console.log(err))
@@ -32,18 +34,6 @@ function App() {
     navigate(`/pet/${selectedPet.id}`);
   }
 
-  /*
-  Updates from Lauren:
-    I wanted to make sure this would render for you before pushing it.
-    ** note about testing: I've noticed that if I update a jsx files and the page renders blank,
-                            there's probably an error, but it won't tell you where.
-
-    I updated my react-router-dom to version 6 because I was using a newer version of React
-        - requires the BrowserRouter wrapper to render page whenever routes are used which I added here.
-        - "component" is also now "element"
-        - switch and redirect are deprecated, so I updated/removed as necessary
-
-   */
   return (
       <div>
         <NavBar/>
@@ -53,7 +43,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/browse" element={<Browse pets={pets} selectPet={selectPet} />} />
           <Route path="/search" element={<Search pets={pets} selectPet={selectPet} />} />
-          <Route path="/pet/:id" element={<Profile pet={selectedPet} />} />
+          <Route path="/pet/:id" element={<Profile isAdmin={isAdmin} pet={selectedPet} />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="/" element={<Navigate to="/feed" replace />} />
         </Routes>

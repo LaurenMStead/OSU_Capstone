@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MdPhone, MdEmail } from 'react-icons/md';
 
-const Profile = ({ pet }) => {
+const Profile = ({ isAdmin, pet }) => {
     const [availability, setAvailability] = useState(pet.availability);
 
     const adoptPet = (pet) => {
@@ -31,9 +31,19 @@ const Profile = ({ pet }) => {
         )
     }
 
+    const getEditButton = () => {
+        return (
+            isAdmin === true ?
+                <button className="Profile_button" onClick={() => adoptPet(pet)}>Edit</button>
+            :
+                ''
+        )
+    }
+
     return (
-        <div>
+        <div id="Profile">
             <table>
+             <tbody>
                 <tr>
                     <td>
                         <h2>{pet.name}</h2>
@@ -44,9 +54,13 @@ const Profile = ({ pet }) => {
                         <p><b>Availability:</b> {availability}</p>
                         <p><b>Contact:</b> <MdPhone/><MdEmail/></p>
                         <p>Last updated on {pet.last_updated}</p>
-                        {getSubmitButton()}
+                        <div className="Profile_buttons">
+                            {getSubmitButton()}
+                            {getEditButton()}
+                        </div>
                     </td>
                 </tr>
+                </tbody>
             </table>
         </div>
       );
