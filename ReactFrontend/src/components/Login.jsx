@@ -14,19 +14,33 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
     setPassword(event.target.value);
   }
 
-  const onSubmit = () => {
-    fetch('http://127.0.0.1:8000/api/login', {
+  const loginUser = async () => {
+    await fetch('http://127.0.0.1:8000/api/login', {
       method: 'POST',
       body: JSON.stringify({ username , password })
     })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          setIsLoggedIn(true);
-          setIsAdmin(data.admin);
-          navigate('/');
-
-        })
+            console.log(data);
+            if(data['success'] !== undefined){
+                setIsLoggedIn(data['success']);
+                setIsAdmin(data['is_superuser']);
+                console.log("login success");
+                navigate('/');
+            }
+            else if (data['Error'] !== undefined){
+              // alert if username is already taken
+                console.log("error")
+              alert(data['Error']);
+            }
+            else{
+              // any other error is considered a server error
+              console.log(data);
+              console.log("other error")
+              alert('Internal server error : try logging in again later');
+            }
+            console.log("passed logic")
+          })
         .catch(err => console.log(err))
   }
 
@@ -34,13 +48,13 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
     <form id="Login">
       <fieldset className="Login_outerFieldset">
           <fieldset className="Login_innerFieldset">
-            <label className="Login_label" for="username">Username</label>
+            <label className="Login_label" htmlFor="username">Username</label>
             <input className="Login_input" id="username" type="text" placeholder="Enter Username" name="username" onChange={(e) => handleUsernameChange(e)} required />
 
-            <label className="Login_label" for="password">Password</label>
+            <label className="Login_label" htmlFor="password">Password</label>
             <input className="Login_input" id="password" type="password" placeholder="Enter Password" name="password" onChange={(e) => handlePasswordChange(e)} required />
 
-            <button className="Login_button" type="submit" onClick={onSubmit}>Login</button>
+            <button className="Login_button" type="submit" onClick={() => loginUser()}>Login</button>
 
             <Link to="/signup"><button className="Login_createButton" type="submit">Create an Account</button></Link>
         </fieldset>
