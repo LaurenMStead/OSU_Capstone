@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import { MdPhone, MdEmail } from 'react-icons/md';
+import AuthContext from "../context/AuthContext";
 
-const Profile = ({ isAdmin, pet }) => {
+const Profile = ({ pet }) => {
     const [availability, setAvailability] = useState(pet.availability);
+    const auth = useContext(AuthContext)
 
     const adoptPet = (pet) => {
         fetch(`http://127.0.0.1:8000/api/pets`, {
@@ -33,10 +35,10 @@ const Profile = ({ isAdmin, pet }) => {
 
     const getEditButton = () => {
         return (
-            isAdmin === true ?
+            auth.isAdmin === true ?
                 <button className="Profile_button" onClick={() => adoptPet(pet)}>Edit</button>
             :
-                null
+                <></>
         )
     }
 

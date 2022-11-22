@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, {useContext} from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
-const Login = ({ setIsLoggedIn, setIsAdmin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+const Login = () => {
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  }
+    const auth = useContext(AuthContext)
+    const navigate = useNavigate();
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  }
+    const handleSubmit = async e => {
+      e.preventDefault();
+      const username = e.target.username.value;
+      const password = e.target.password.value;
+      await loginUser(username, password);
+    };
 
-  const loginUser = async () => {
+    const loginUser = async (username, password) => {
     await fetch('http://127.0.0.1:8000/api/login', {
       method: 'POST',
       body: JSON.stringify({ username , password })
@@ -22,9 +22,9 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
-            if(data['success'] !== undefined){
-                setIsLoggedIn(data['success']);
-                setIsAdmin(data['is_superuser']);
+            if(data['is_superuser'] !== undefined){
+                auth.setIsLoggedIn(true);
+                auth.setIsAdmin(data['is_superuser']);
                 console.log("login success");
                 navigate('/');
             }
@@ -39,22 +39,22 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
               console.log("other error")
               alert('Internal server error : try logging in again later');
             }
-            console.log("passed logic")
           })
         .catch(err => console.log(err))
-  }
+    }
 
   return (
-    <form id="Login">
+    <form id="Login" onSubmit={handleSubmit}>
       <fieldset className="Login_outerFieldset">
           <fieldset className="Login_innerFieldset">
+
             <label className="Login_label" htmlFor="username">Username</label>
-            <input className="Login_input" id="username" type="text" placeholder="Enter Username" name="username" onChange={(e) => handleUsernameChange(e)} required />
+            <input className="Login_input" id="username" type="text" placeholder="Enter Username" name="username" required />
 
             <label className="Login_label" htmlFor="password">Password</label>
-            <input className="Login_input" id="password" type="password" placeholder="Enter Password" name="password" onChange={(e) => handlePasswordChange(e)} required />
+            <input className="Login_input" id="password" type="password" placeholder="Enter Password" name="password" required/>
 
-            <button className="Login_button" type="submit" onClick={() => loginUser()}>Login</button>
+            <button className="Login_button" type="submit">Login</button>
 
             <Link to="/signup"><button className="Login_createButton" type="submit">Create an Account</button></Link>
         </fieldset>

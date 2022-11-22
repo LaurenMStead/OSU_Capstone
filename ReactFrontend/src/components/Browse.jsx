@@ -14,7 +14,7 @@ export default function Browse({ pets, selectPet }) {
         }
         setAvailablePets(filteredPets);
         setSpotlightPet(filteredPets[0]);
-    }, []);
+    }, [pets]);
 
     const getNextSpotlightPet = () => {
         let nextIndex = spotlightIndex + 1 === availablePets.length ? 0 : spotlightIndex + 1;

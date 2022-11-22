@@ -1,37 +1,33 @@
-import React, { useState } from 'react';
+import React, {useContext} from 'react';
 import {Link, useNavigate} from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
-const Signup = ({ props, setIsLoggedIn, setIsAdmin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [adminCheck, setAdminCheck] = useState(false);
+const Signup = () => {
 
-  const navigate = useNavigate();
+    const auth = useContext(AuthContext)
+    const navigate = useNavigate();
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  }
+    const handleSubmit = async e => {
+      e.preventDefault();
+      const username = e.target.username.value;
+      const password = e.target.password.value;
+      const admin = document.getElementById("admin");
+      // console.log(username, password, admin.checked);
+      // const retypePassword = e.target.password2.value;
+      await signupUser(username, password, admin.checked);
+    };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  }
-
-  const handleAdminCheckChange = () => {
-    setAdminCheck(!adminCheck);
-  }
-
-  const signupUser = async () => {
+  const signupUser = async (username, password, admin) => {
     await fetch('http://127.0.0.1:8000/api/signup', {
       method: 'POST',
-      body: JSON.stringify({ username , password , is_superuser: adminCheck })
+      body: JSON.stringify({ username , password , is_superuser: admin })
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
-          if (data['success'] !== undefined )
+          if (data['is_superuser'] !== undefined )
           {
-            setIsLoggedIn(data['success']);
-            setIsAdmin(data['is_superuser']);
+            auth.setIsLoggedIn(true);
+            auth.setIsAdmin(data['is_superuser']);
             navigate('/');
           }
           else if (data['username'] !== undefined){
@@ -48,19 +44,19 @@ const Signup = ({ props, setIsLoggedIn, setIsAdmin }) => {
   }
 
   return (
-    <form id="Signup">
+    <form id="Signup" onSubmit={handleSubmit}>
       <fieldset className="Signup_outerFieldset">
         <fieldset className="Signup_innerFieldset">
           <label className="Signup_label" htmlFor="username">Username</label>
-          <input className="Signup_input" type="text" placeholder="Enter Username" name="username" onChange={(e) => handleUsernameChange(e)} required />
+          <input className="Signup_input" id="username" type="text" placeholder="Enter Username" name="username" required />
 
           <label className="Signup_label" htmlFor="password">Password</label>
-          <input className="Signup_input" type="password" placeholder="Enter Password" name="password" onChange={(e) => handlePasswordChange(e)} required />
+          <input className="Signup_input" id="password" type="password" placeholder="Enter Password" name="password"  required />
 
           <label className="Signup_label" htmlFor="admin">Check the box if you're a Shelter</label>
-          <input className="Signup_input" type="checkbox" name="admin" value="admin" onChange={() => handleAdminCheckChange()} />
+          <input className="Signup_input" id="admin" type="checkbox" name="admin"/>
 
-          <button className="Signup_button" type="submit" onClick={() => signupUser()}>Signup</button>
+          <button className="Signup_button" type="submit">Signup</button>
 
           <Link to="/login" ><button className="Signup_loginButton" type="submit">Already have an account? Login here</button></Link>
         </fieldset>

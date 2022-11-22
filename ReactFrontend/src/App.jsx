@@ -12,26 +12,14 @@ import NavBar from './components/NavBar.jsx';
 import NewPet from './components/NewPet.jsx';
 import { sampleData } from './sampleData.js';
 
+import AuthContext from "./context/AuthContext.jsx"
+
 function App() {
   const [pets, setPets] = useState(sampleData);
   const [selectedPet, setSelectedPet] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
-
-/*
-  useEffect(() => {
-      fetch('http://127.0.0.1:8000/api/pets')
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data.pets);
-          setPets(data.pets);
-        })
-        .catch(err => console.log(err))
-
-      fetch('http://127.0.0.1:8000/api/')
-  }, []);
-*/
 
   const selectPet = (selectedPet) => {
     // set pet to the selected pet
@@ -40,20 +28,24 @@ function App() {
     navigate(`/pet/${selectedPet.id}`);
   }
 
+  const auth = {isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin};
+
   return (
       <div id="App">
-        <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin}/>
-        <Routes>
-          <Route path="feed" element={<ProfileList pets={pets} selectPet={selectPet} />} />
-          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />} />
-          <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />} />
-          <Route path="/browse" element={<Browse pets={pets} selectPet={selectPet} />} />
-          <Route path="/search" element={<Search pets={pets} selectPet={selectPet} />} />
-          <Route path="/pet/:id" element={<Profile isAdmin={isAdmin} pet={selectedPet} />} />
-          <Route path="/newPet" element={<NewPet />} />
-          <Route path="/404" element={<NotFound />} />
-          <Route path="/" element={<Navigate to="/feed" replace />} />
-        </Routes>
+          <AuthContext.Provider value={auth}>
+            <NavBar/>
+            <Routes>
+                <Route path="feed" element={<ProfileList pets={pets} selectPet={selectPet} />} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/signup" element={<Signup/>} />
+                <Route path="/browse" element={<Browse pets={pets} selectPet={selectPet} />} />
+                <Route path="/search" element={<Search pets={pets} selectPet={selectPet} />} />
+                <Route path="/pet/:id" element={<Profile isAdmin={isAdmin} pet={selectedPet} />} />
+                <Route path="/newPet" element={<NewPet />} />
+                <Route path="/404" element={<NotFound />} />
+                <Route path="/" element={<Navigate to="/feed" replace />} />
+            </Routes>
+          </AuthContext.Provider>
       </div>
   );
 }
