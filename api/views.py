@@ -18,7 +18,6 @@ def pets(request):
 
 
 def pet(request, id):
-
     try:
         data = Pet.objects.get(pk=id)
     except Pet.DoesNotExist:
@@ -41,7 +40,6 @@ def pet(request, id):
 @csrf_exempt
 @api_view(['POST'])
 def createNewUser(request):
-
     body = json.loads(request.body)
     serializer = UserSerializer(data=body)
 
@@ -56,6 +54,7 @@ def createNewUser(request):
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@csrf_exempt
 @api_view(['POST'])
 def loginUser(request):
     body = json.loads(request.body)
@@ -65,11 +64,7 @@ def loginUser(request):
 
     user = authenticate(username=verifyUsername, password=verifyPassword)
     if user is not None:
-        tokens = {
-            'success': True,
-            'is_superuser': user.is_superuser
-        }
-        print("login success!")
-        return Response(data=tokens, status=status.HTTP_200_OK)
+        admin = {'is_superuser': user.is_superuser}
+        return Response(data=admin, status=status.HTTP_200_OK)
     else:
         return Response(data={'Error': 'Username or password is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
