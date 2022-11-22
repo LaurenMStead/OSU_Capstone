@@ -105,6 +105,10 @@ h2 {
   background-color: #282c34;
 }
 
+.Header_Link:hover, .Header_Link:active, .Header_Link:visited {
+  color: white;
+}
+
 .NavBar_linkContainer {
   display: flex;
   align-self: flex-end;

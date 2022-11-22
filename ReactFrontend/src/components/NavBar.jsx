@@ -9,7 +9,7 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn, setIsAdmin }) =>  {
     }
     return (
       <div id="NavBar">
-        <h1 className="NavBar_header">ADOPTR</h1>
+        <h1 className="NavBar_header"><a className="Header_Link" href="/">ADOPTR</a></h1>
         <div className="NavBar_linkContainer">
           <NavLink className="NavBar_link" to="/">Home</NavLink>
           <NavLink className="NavBar_link" to="/search">Search</NavLink>
