@@ -42,10 +42,6 @@ const FilterBar = ({ filterPets, resetPets, dogBreeds, catBreeds, otherBreeds })
       stateSetter(values);
     }
 
-    if (optionName === 'disposition') {
-
-    }
-
     // lists normal drop down for all other filtering options, besides breed
     return (
       <select className="FilterBar_select" name={optionName} id={optionName} onChange={(e) => handleChange(e)} multiple>

@@ -71,12 +71,14 @@ h2 {
 
 .FilterBar_select {
   display: flex;
-  width: 300px;
+  width: fit-content;
   height: 60px;
 }
 
 .FilterBar_option {
   font-size: 16px;
+  padding: 2px 10px 2px 2px;
+  border-bottom: 1px solid black;
 }
 
 #NavBar {

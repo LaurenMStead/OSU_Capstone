@@ -2,7 +2,6 @@ import React, {useContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdPhone, MdEmail } from 'react-icons/md';
 import AuthContext from "../context/AuthContext";
-import { faker } from '@faker-js/faker';
 
 const Profile = ({ pet }) => {
     const [availability, setAvailability] = useState(pet.availability);
@@ -11,13 +10,13 @@ const Profile = ({ pet }) => {
 
     const adoptPet = async (pet) => {
         if (auth.isLoggedIn) {
-            await fetch(`http://127.0.0.1:8000/api/pets`, {
-            method: 'POST',
+            await fetch(`http://127.0.0.1:8000/api/pets/${pet.id}`, {
+            method: 'PATCH',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ "id": pet.id })
+            body: JSON.stringify({ "availability": 'Pending' })
             })
             .then(response => response.json())
             .then(response => setAvailability('Pending'))
@@ -32,14 +31,15 @@ const Profile = ({ pet }) => {
 
     const getSubmitButton = () => {
         return (
-            availability === 'Available' || 'Pending' ?
-                <button className="Profile_button" onClick={() => adoptPet(pet)}>Adopt Me</button>
+            availability === 'Available' ?
+                <button
+                    className="Profile_button"
+                    onClick={() => adoptPet(pet)}>Adopt Me</button>
             :
                 <button
                     className="Profile_button"
-                    onClick={() => adoptPet(pet)}
                     title="Unavailable for adoption"
-                    disabled>
+                    disabled
                 >Adopt Me</button>
         )
     }
@@ -57,7 +57,7 @@ const Profile = ({ pet }) => {
         <div id="Profile">
             <fieldset className="Profile_outerFieldset">
             <fieldset className="Profile_innerFieldset">
-                <img className="Profile_item" src={pet.image}/>
+                <img className="Profile_item" src={pet.image} alt={pet.name}/>
 
                 <h2 className="Profile_header">{pet.name}</h2>
 
