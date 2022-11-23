@@ -10,6 +10,7 @@ import ProfileList from './components/ProfileList.jsx';
 import Profile from "./components/Profile.jsx"
 import NavBar from './components/NavBar.jsx';
 import NewPet from './components/NewPet.jsx';
+import EditPet from './components/EditPet.jsx';
 import AuthContext from "./context/AuthContext.jsx"
 
 function App() {
@@ -50,7 +51,7 @@ function App() {
                 <Route path="/search" element={<Search pets={pets} selectPet={selectPet} />} />
                 <Route path="/pet/:id" element={<Profile pet={selectedPet} />} />
                 <Route path="/newPet" element={<NewPet />} />
-                <Route path="/editPet" element={<NewPet selectedPet={selectedPet}/>} />
+                <Route path="/editPet" element={<EditPet selectedPet={selectedPet}/>} />
                 <Route path="/404" element={<NotFound />} />
                 <Route path="/" element={<Navigate to="/feed" replace />} />
             </Routes>

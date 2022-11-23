@@ -120,7 +120,7 @@ h2 {
   color: lightblue;
 }
 
-#NewPet, #Login, #Signup, #Profile {
+#NewPet, #EditPet, #Login, #Signup, #Profile {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -128,7 +128,7 @@ h2 {
   align-items: center;
 }
 
-.NewPet_outerFieldset, .NewPet_innerFieldset, .Login_outerFieldset, .Login_innerFieldset, .Signup_outerFieldset, .Signup_innerFieldset, .Profile_outerFieldset, .Profile_innerFieldset, .ProfileCard_outerFieldset, .ProfileCard_innerFieldset {
+.NewPet_outerFieldset, .NewPet_innerFieldset, .EditPet_outerFieldset, .EditPet_innerFieldset, .Login_outerFieldset, .Login_innerFieldset, .Signup_outerFieldset, .Signup_innerFieldset, .Profile_outerFieldset, .Profile_innerFieldset, .ProfileCard_outerFieldset, .ProfileCard_innerFieldset {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -147,7 +147,7 @@ h2 {
   height: 100%;
 }
 
-.NewPet_label, .Login_label, .Signup_label {
+.NewPet_label, .EditPet_label, .Login_label, .Signup_label {
   display: flex;
   margin-top: 15px;
   margin-bottom: 5px;
@@ -155,7 +155,7 @@ h2 {
   font-size: 20px;
 }
 
-.NewPet_select, .Login_input, .Signup_input {
+.NewPet_select, .EditPet_select, .Login_input, .Signup_input {
   display: flex;
   margin-bottom: 20px;
   font-size: 14px;
@@ -222,7 +222,7 @@ textarea {
 }
 
 /* All buttons in the site */
-.FilterBar_button, .ProfileCard_button, .Profile_button, .Login_button, .Signup_button, .NewPet_button, .Login_createButton, .Signup_loginButton {
+.FilterBar_button, .ProfileCard_button, .Profile_button, .Login_button, .Signup_button, .NewPet_button, .EditPet_button, .Login_createButton, .Signup_loginButton {
   display: flex;
   align-items: center;
   align-self: center;
