@@ -6,8 +6,9 @@ const Profile = ({ pet }) => {
     const [availability, setAvailability] = useState(pet.availability);
     const auth = useContext(AuthContext)
 
-    const adoptPet = (pet) => {
-        fetch(`http://127.0.0.1:8000/api/pets`, {
+    const adoptPet = async (pet) => {
+        if (auth.isLoggedIn){
+                    await fetch(`http://127.0.0.1:8000/api/pets`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -17,6 +18,10 @@ const Profile = ({ pet }) => {
         })
         .then(response => response.json())
         .then(response => setAvailability(JSON.stringify(response)))
+        }
+    else{
+        alert("Please log in or sign up to view information on our adoptable pets!");
+        }
     }
 
     const getSubmitButton = () => {
