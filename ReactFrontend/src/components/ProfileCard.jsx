@@ -19,6 +19,8 @@ export default function ProfileCard({ pet, selectPet, getNextSpotlightPet }) {
                     <h1 className="ProfileCard_item" onClick={() => selectPet(pet)}>
                         {pet.name}
                     </h1>
+                    <p className="ProfileCard_item" ><b>Type:</b> {pet.type}</p>
+                    <p className="ProfileCard_item" ><b>Breed:</b> {pet.breed}</p>
                     <p className="ProfileCard_item" ><b>Age:</b> {pet.age}</p>
                     <p className="ProfileCard_item" ><b>Gender:</b> {pet.gender}</p>
                     <p className="ProfileCard_item" ><b>Dispositions:</b>

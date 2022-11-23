@@ -7,27 +7,24 @@ const NewPet = ({ selectedPet }) =>  {
   const age = ['Baby', 'Youth', 'Adult', 'Senior'];
   const availabilities = ['Available', 'Not Available', 'Pending', 'Adopted'];
   const dispositionChoices = ['Yes', 'No', 'Unknown'];
-  const [selectedType, setSelectedType] = useState('');
-  const [selectedGender, setSelectedGender] = useState('');
-  const [selectedBreed, setSelectedBreed] = useState('');
-  const [selectedDisposition, setSelectedDisposition] = useState([]);
-  const [selectedAge, setSelectedAge] = useState('');
-  const [inputImage, setInputImage] = useState('');
-  const [selectedAvailability, setAvailability] = useState('');
   const auth = useContext(AuthContext);
 
-  const getDropdownOptions = (optionName, optionList, stateSetter) => {
+  const getDropdownOptions = (optionName, optionList ) => {
 
-    const handleChange = () => {
-      let options = [...document.getElementById(optionName).options];
-      let selected = options.filter(option => option.selected)
-      let values = selected.map(option => option.value);
-      stateSetter(values);
+    console.log('thisone: ', selectedPet);
+    if (selectedPet) {
+      console.log('selectedPet: ', selectedPet);
+      if (optionName === 'gwc') {
+        selectedPet[optionName] = selectedPet.good_with_children
+      } else if (optionName === 'gwoa') {
+        selectedPet[optionName] = selectedPet.good_with_other_animals
+      } else if (optionName === 'mbl') {
+        selectedPet[optionName] = selectedPet.must_be_leashed
+      }
     }
 
-    // lists normal drop down for all other filtering options, besides breed
     return (
-      <select className="NewPet_select" name={optionName} id={optionName} onChange={(e) => handleChange(e)} >
+      <select className="NewPet_select" name={optionName} id={optionName} defaultValue={selectedPet !== undefined ? selectedPet[optionName] : null}>
         {optionList.map((option, i) => (
           <option id={option} className="NewPet_option" key={option} value={option} >{option}</option>
         ))}
@@ -58,8 +55,12 @@ const NewPet = ({ selectedPet }) =>  {
       "news_blurb": "",
       "description": e.target.description.value,
     }
-    console.log(petData);
-    await addPet(petData);
+
+    if (selectedPet) {
+      await editPet(petData);
+    } else {
+      await addPet(petData);
+    }
   }
 
   const addPet = (event, petInfo) => {
@@ -76,26 +77,40 @@ const NewPet = ({ selectedPet }) =>  {
         .catch(err => console.log(err))
   }
 
+  const editPet = (event, petInfo) => {
+    event.preventDefault();
+    petInfo.id = selectedPet.id;
+
+    fetch('http://127.0.0.1:8000/api/pets', {
+      method: 'PUT',
+      body: JSON.stringify(petInfo)
+    })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch(err => console.log(err))
+  }
+
     return (
       <form id="NewPet" onSubmit={getPetInfo}>
         <fieldset className="NewPet_outerFieldset">
           <fieldset className="NewPet_innerFieldset">
           <legend>Fill out the form to add a new pet! *All sections are required</legend>
             <label className="NewPet_label" htmlFor="name">Name:</label>
-            <input className="NewPet_select" type="text" name="name"></input>
+            <input className="NewPet_select" type="text" name="name" defaultValue={selectedPet !== undefined ? selectedPet.name : null}/>
 
             <label className="NewPet_label" htmlFor="type">Type:</label>
             {getDropdownOptions('type', type)}
 
             <label className="NewPet_label" htmlFor="breed">Breed:</label>
-            {/*{getDropdownOptions('breed', breed, setSelectedBreed)}*/}
-            <input className="NewPet_select" type="text" name="breed"></input>
+            <input className="NewPet_select" type="text" name="breed" defaultValue={selectedPet !== undefined ? selectedPet.breed : null}></input>
 
             <label className="NewPet_label" htmlFor="gender">Gender:</label>
             {getDropdownOptions('gender', gender)}
 
             <label className="NewPet_label" htmlFor="age">Age:</label>
-            {getDropdownOptions('age', age, setSelectedAge)}
+            {getDropdownOptions('age', age)}
 
             <label className="NewPet_label" htmlFor="availability">Availability:</label>
             {getDropdownOptions('availability', availabilities)}
@@ -106,10 +121,10 @@ const NewPet = ({ selectedPet }) =>  {
             <label className="disposition_select" /> Must be leashed at all times {getDropdownOptions('mbl', dispositionChoices)}
 
             <label className="NewPet_label" htmlFor="description">Description:</label>
-            <textarea className="NewPet_select" name="description"></textarea>
+            <textarea className="NewPet_select" name="description" defaultValue={selectedPet !== undefined ? selectedPet.description : null}></textarea>
 
             <label className="NewPet_label" htmlFor="image">Image Link:</label>
-            <input className="NewPet_select" type="text" name="image" ></input>
+            <input className="NewPet_select" type="text" name="image" defaultValue={selectedPet !== undefined ? selectedPet.image : null}></input>
 
             <button className="NewPet_button">Submit</button>
             </fieldset>

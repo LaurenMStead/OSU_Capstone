@@ -41,15 +41,16 @@ function App() {
   return (
       <div id="App">
           <AuthContext.Provider value={auth}>
-            <NavBar/>
+            <NavBar />
             <Routes>
                 <Route path="feed" element={<ProfileList pets={pets} selectPet={selectPet} />} />
                 <Route path="/login" element={<Login/>} />
                 <Route path="/signup" element={<Signup/>} />
                 <Route path="/browse" element={<Browse pets={pets} selectPet={selectPet} />} />
                 <Route path="/search" element={<Search pets={pets} selectPet={selectPet} />} />
-                <Route path="/pet/:id" element={<Profile isAdmin={isAdmin} pet={selectedPet} />} />
-                <Route path="/newPet" element={<NewPet selectedPet={selectedPet}/>} />
+                <Route path="/pet/:id" element={<Profile pet={selectedPet} />} />
+                <Route path="/newPet" element={<NewPet />} />
+                <Route path="/editPet" element={<NewPet selectedPet={selectedPet}/>} />
                 <Route path="/404" element={<NotFound />} />
                 <Route path="/" element={<Navigate to="/feed" replace />} />
             </Routes>

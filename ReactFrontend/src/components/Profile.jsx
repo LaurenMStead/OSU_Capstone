@@ -10,23 +10,24 @@ const Profile = ({ pet }) => {
     const navigate = useNavigate();
 
     const adoptPet = async (pet) => {
-        if (auth.isLoggedIn){
-                    await fetch(`http://127.0.0.1:8000/api/pets`, {
+        if (auth.isLoggedIn) {
+            await fetch(`http://127.0.0.1:8000/api/pets`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ "id": pet.id })
-        })
-        .then(response => response.json())
-        .then(response => setAvailability('Pending'))
+            })
+            .then(response => response.json())
+            .then(response => setAvailability('Pending'))
         } else {
             alert("Please log in or sign up to view information on our adoptable pets!");
         }
+    }
 
     const editPet = () => {
-        navigate('/newPet');
+        navigate('/editPet');
     }
 
     const getSubmitButton = () => {
@@ -46,7 +47,7 @@ const Profile = ({ pet }) => {
     const getEditButton = () => {
         return (
             auth.isAdmin === true ?
-                <button className="Profile_button" onClick={() => adoptPet(pet)}>Edit</button>
+                <button className="Profile_button" onClick={() => editPet()}>Edit</button>
             :
                 <></>
         )
@@ -63,9 +64,13 @@ const Profile = ({ pet }) => {
                 <p className="Profile_item"><b>Age:</b> {pet.age}</p>
                 <p className="Profile_item"><b>Gender:</b> {pet.gender}</p>
                 <p className="Profile_item"><b>Breed:</b> {pet.breed}</p>
-                <p className="Profile_paragraph"><b>About Me:</b> {faker.lorem.paragraph()}</p>
-                <p className="Profile_item"><b>Dispositions:</b> {pet.good_with_children}</p>
-                <p className="Profile_item"><b>Availability:</b> {availability}</p><p className="Profile_paragraph"><b>News Item:</b> {faker.lorem.paragraphs()}</p>
+                <p className="Profile_item"><b>About Me:</b> {pet.description}</p>
+                <ul className="Profile_item" ><b>Dispositions:</b>
+                    <li><b>Good with children:</b> {pet.good_with_children}</li>
+                    <li><b>Good with other animals:</b> {pet.good_with_other_animals}</li>
+                    <li><b>Must be leashed:</b> {pet.must_be_leashed}</li>
+                </ul>
+                <p className="Profile_item"><b>Availability:</b> {availability}</p><p className="Profile_item"><b>News Item:</b> {pet.news_blurb}</p>
                 <p className="Profile_item"><b>Contact:</b> <MdPhone/><MdEmail/></p>
                 <p className="Profile_item">Last updated on {new Date(pet.last_updated).toLocaleDateString()}</p>
                 <p className="Profile_item">Profile created on {new Date(pet.date_created).toLocaleDateString()}</p>
@@ -75,7 +80,7 @@ const Profile = ({ pet }) => {
             </fieldset>
             </fieldset>
         </div>
-      );
-    }
+    );
+}
 
 export default Profile;

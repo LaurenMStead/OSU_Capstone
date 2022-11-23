@@ -180,11 +180,12 @@ textarea {
 }
 
 #Profile {
-  width: fit-content;
+  width: 800px;
+  height: fit-content;
 }
 
-.Profile_paragraph {
-  width: 500px
+.Profile_item li {
+  list-style-type: square;
 }
 
 #ProfileCard {
@@ -198,9 +199,7 @@ textarea {
 }
 
 .ProfileCard_item {
-  margin-left: 0px;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  margin: 5px auto;
   text-align: center;
 }
 
