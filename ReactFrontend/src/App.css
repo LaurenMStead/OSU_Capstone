@@ -173,6 +173,12 @@ h2 {
   font-size: 14px;
 }
 
+input[type=checkbox]{
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px;
+}
+
 textarea {
   width: 400px !important;
   height: 200px;
@@ -251,4 +257,17 @@ textarea {
 .FilterBar_button:active, .ProfileCard_button:active, .Profile_button:active, .Login_button:active, .Signup_button:active, .NewPet_button:active, .Login_createButton:active, .Signup_loginButton:active  {
   box-shadow: black 2px 2px 0 0;
 }
+
+.footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  table-layout: fixed;
+  width: 100%;
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+}
+
+
 
