@@ -1,8 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import AuthContext from "../context/AuthContext";
 
-const NewPet = () =>  {
-
+const NewPet = ({ selectedPet }) =>  {
   const type = ['Dog', 'Cat', 'Other'];
   const gender = ['Female', 'Male'];
   const age = ['Baby', 'Youth', 'Adult', 'Senior'];

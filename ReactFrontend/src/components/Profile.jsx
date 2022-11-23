@@ -1,10 +1,13 @@
 import React, {useContext, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MdPhone, MdEmail } from 'react-icons/md';
 import AuthContext from "../context/AuthContext";
+import { faker } from '@faker-js/faker';
 
 const Profile = ({ pet }) => {
     const [availability, setAvailability] = useState(pet.availability);
     const auth = useContext(AuthContext)
+    const navigate = useNavigate();
 
     const adoptPet = async (pet) => {
         if (auth.isLoggedIn){
@@ -17,11 +20,13 @@ const Profile = ({ pet }) => {
             body: JSON.stringify({ "id": pet.id })
         })
         .then(response => response.json())
-        .then(response => setAvailability(JSON.stringify(response)))
+        .then(response => setAvailability('Pending'))
+        } else {
+            alert("Please log in or sign up to view information on our adoptable pets!");
         }
-    else{
-        alert("Please log in or sign up to view information on our adoptable pets!");
-        }
+
+    const editPet = () => {
+        navigate('/newPet');
     }
 
     const getSubmitButton = () => {
@@ -49,26 +54,26 @@ const Profile = ({ pet }) => {
 
     return (
         <div id="Profile">
-            <table>
-             <tbody>
-                <tr>
-                    <td>
-                        <h2>{pet.name}</h2>
-                        <p><b>Joined:</b> {pet.date_created}</p>
-                        <p><b>Age:</b> {pet.age}</p>
-                        <p><b>Gender:</b> {pet.gender}</p>
-                        <p><b>About Me:</b> {pet.description}</p>
-                        <p><b>Availability:</b> {availability}</p>
-                        <p><b>Contact:</b> <MdPhone/><MdEmail/></p>
-                        <p>Last updated on {pet.last_updated}</p>
-                        <div className="Profile_buttons">
-                            {getSubmitButton()}
-                            {getEditButton()}
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <fieldset className="Profile_outerFieldset">
+            <fieldset className="Profile_innerFieldset">
+                <img className="Profile_item" src={pet.image}/>
+
+                <h2 className="Profile_header">{pet.name}</h2>
+
+                <p className="Profile_item"><b>Age:</b> {pet.age}</p>
+                <p className="Profile_item"><b>Gender:</b> {pet.gender}</p>
+                <p className="Profile_item"><b>Breed:</b> {pet.breed}</p>
+                <p className="Profile_paragraph"><b>About Me:</b> {faker.lorem.paragraph()}</p>
+                <p className="Profile_item"><b>Dispositions:</b> {pet.good_with_children}</p>
+                <p className="Profile_item"><b>Availability:</b> {availability}</p><p className="Profile_paragraph"><b>News Item:</b> {faker.lorem.paragraphs()}</p>
+                <p className="Profile_item"><b>Contact:</b> <MdPhone/><MdEmail/></p>
+                <p className="Profile_item">Last updated on {new Date(pet.last_updated).toLocaleDateString()}</p>
+                <p className="Profile_item">Profile created on {new Date(pet.date_created).toLocaleDateString()}</p>
+
+                {getSubmitButton()}
+                {getEditButton()}
+            </fieldset>
+            </fieldset>
         </div>
       );
     }

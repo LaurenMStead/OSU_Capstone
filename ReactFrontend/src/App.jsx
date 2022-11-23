@@ -10,16 +10,24 @@ import ProfileList from './components/ProfileList.jsx';
 import Profile from "./components/Profile.jsx"
 import NavBar from './components/NavBar.jsx';
 import NewPet from './components/NewPet.jsx';
-import { sampleData } from './sampleData.js';
-
 import AuthContext from "./context/AuthContext.jsx"
 
 function App() {
-  const [pets, setPets] = useState(sampleData);
+  const [pets, setPets] = useState([]);
   const [selectedPet, setSelectedPet] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+      fetch('http://127.0.0.1:8000/api/pets')
+        .then((response) => response.json())
+        .then((data) => {
+          data.pets.sort((a, b) => b.date_created - a.date_created);
+          setPets(data.pets);
+        })
+        .catch(err => console.log(err))
+  }, []);
 
   const selectPet = (selectedPet) => {
     // set pet to the selected pet
@@ -41,7 +49,7 @@ function App() {
                 <Route path="/browse" element={<Browse pets={pets} selectPet={selectPet} />} />
                 <Route path="/search" element={<Search pets={pets} selectPet={selectPet} />} />
                 <Route path="/pet/:id" element={<Profile isAdmin={isAdmin} pet={selectedPet} />} />
-                <Route path="/newPet" element={<NewPet />} />
+                <Route path="/newPet" element={<NewPet selectedPet={selectedPet}/>} />
                 <Route path="/404" element={<NotFound />} />
                 <Route path="/" element={<Navigate to="/feed" replace />} />
             </Routes>

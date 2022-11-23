@@ -27,7 +27,7 @@ const FilterBar = ({ filterPets, resetPets }) => {
 
   const clickType = (event, input) => {
     setSelectedType(input.toLowerCase());
-    filterPets(event, { type: input, breed: selectedBreed, disposition: selectedDisposition, age: selectedAge })
+    filterPets(event, { type: input, breed: selectedBreed, disposition: selectedDisposition, age: selectedAge, gender: selectedGender })
   }
 
   const getDropdownOptions = (optionName, optionList, stateSetter) => {
