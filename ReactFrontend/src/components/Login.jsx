@@ -4,7 +4,7 @@ import AuthContext from "../context/AuthContext";
 
 const Login = () => {
 
-    const auth = useContext(AuthContext)
+    const auth = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = async e => {
@@ -25,18 +25,14 @@ const Login = () => {
             if(data['is_superuser'] !== undefined){
                 auth.setIsLoggedIn(true);
                 auth.setIsAdmin(data['is_superuser']);
-                console.log("login success");
                 navigate('/');
             }
             else if (data['Error'] !== undefined){
-              // alert if username is already taken
-                console.log("error")
               alert(data['Error']);
             }
             else{
               // any other error is considered a server error
               console.log(data);
-              console.log("other error")
               alert('Internal server error : try logging in again later');
             }
           })
