@@ -1,90 +1,92 @@
 from django.db import models
 
-BABY = 'Baby'
-YOUNG = 'Young'
-ADULT = 'Adult'
-SENIOR = 'Senior'
-PET_AGE_CHOICES = [
-    (BABY, 'Baby'),
-    (YOUNG, 'Young'),
-    (ADULT, 'Adult'),
-    (SENIOR, 'Senior'),
-]
-
-DOG = 'Dog'
-CAT = 'Cat'
-REPTILE = 'Reptile'
-OTHER = 'Other'
-PET_TYPE_CHOICES = [
-    (DOG, 'Dog'),
-    (CAT, 'Cat'),
-    (REPTILE, 'Reptile'),
-    (OTHER, 'Other'),
-]
-
-MALE = 'Male'
-FEMALE = 'Female'
-PET_SEX_CHOICES = [
-    (MALE, 'Male'),
-    (FEMALE, 'Female'),
-]
-
-AVAILABLE = 'Available'
-NOT_AVAILABLE = 'Not Available'
-PENDING = 'Pending'
-ADOPTED = 'Adopted'
-PET_AVAILABILITY_CHOICES = [
-    (AVAILABLE, 'Available'),
-    (NOT_AVAILABLE, 'Not Available'),
-    (PENDING, 'Pending'),
-    (ADOPTED, 'Adopted')
-]
-
-POODLE = 'Poodle'
-GERMAN_SHEPHERD = 'German Shepherd'
-CHIHUAHUA = 'Chihuahua'
-MUT = 'Mut'
-LABRADOR = 'Labrador'
-DSH = 'Domestic Short Hair'
-DLH = 'Domestic Long Hair'
-SIAMESE = 'Siamese'
-RUSSIAN_BLUE = 'Russian Blue'
-MAINE_COON = 'Main Coon'
-FISH = 'Fish'
-SNAKE = 'Snake'
-TURTLE = 'Turtle'
-IGUANA = 'Iguana'
-OTHER = 'Other'
-PET_BREED_CHOICES = [
-    (POODLE, 'Poodle'),
-    (GERMAN_SHEPHERD, 'German Shepherd'),
-    (CHIHUAHUA, 'Chihuahua'),
-    (MUT, 'Mut'),
-    (LABRADOR, 'Labrador'),
-    (DSH, 'Domestic Short Hair'),
-    (DLH, 'Domestic Long Hair'),
-    (SIAMESE, 'Siamese'),
-    (RUSSIAN_BLUE, 'Russian Blue'),
-    (MAINE_COON, 'Main Coon'),
-    (FISH, 'Fish'),
-    (SNAKE, 'Snake'),
-    (TURTLE, 'Turtle'),
-    (IGUANA, 'Iguana'),
-    (OTHER, 'OTHER'),
-]
-
-YES = 'Yes'
-NO = 'No'
-UNKNOWN = 'Unknown'
-
-PET_DISPOSITION_CHOICES = [
-    (YES, 'Yes'),
-    (NO, 'No'),
-    (UNKNOWN, 'Unknown'),
-    ]
-
 
 class Pet(models.Model):
+    BABY = 'Baby'
+    YOUNG = 'Young'
+    ADULT = 'Adult'
+    SENIOR = 'Senior'
+    PET_AGE_CHOICES = [
+        (BABY, 'Baby'),
+        (YOUNG, 'Young'),
+        (ADULT, 'Adult'),
+        (SENIOR, 'Senior'),
+    ]
+
+    MALE = 'Male'
+    FEMALE = 'Female'
+    PET_SEX_CHOICES = [
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+    ]
+
+    YES = 'Yes'
+    NO = 'No'
+    UNKNOWN = 'Unknown'
+    PET_DISPOSITION_CHOICES = [
+        (YES, 'Yes'),
+        (NO, 'No'),
+        (UNKNOWN, 'Unknown'),
+    ]
+
+    AVAILABLE = 'Available'
+    NOT_AVAILABLE = 'Not Available'
+    PENDING = 'Pending'
+    ADOPTED = 'Adopted'
+    PET_AVAILABILITY_CHOICES = [
+        (AVAILABLE, 'Available'),
+        (NOT_AVAILABLE, 'Not Available'),
+        (PENDING, 'Pending'),
+        (ADOPTED, 'Adopted')
+    ]
+
+    DOG = 'Dog'
+    CAT = 'Cat'
+    OTHER = 'Other'
+    PET_TYPE_CHOICES = [
+        (DOG, 'Dog'),
+        (CAT, 'Cat'),
+        (OTHER, 'Other'),
+    ]
+
+    POODLE = 'Poodle'
+    GERMAN_SHEPHERD = 'German Shepherd'
+    CHIHUAHUA = 'Chihuahua'
+    MUT = 'Mut'
+    LABRADOR = 'Labrador'
+    DSH = 'Domestic Short Hair'
+    DLH = 'Domestic Long Hair'
+    SIAMESE = 'Siamese'
+    RUSSIAN_BLUE = 'Russian Blue'
+    MAINE_COON = 'Main Coon'
+    FISH = 'Fish'
+    SNAKE = 'Snake'
+    TURTLE = 'Turtle'
+    IGUANA = 'Iguana'
+    OTHER = 'Other'
+    PET_BREED_CHOICES = [
+        (DOG, (
+            (POODLE, 'Poodle'),
+            (GERMAN_SHEPHERD, 'German Shepherd'),
+            (CHIHUAHUA, 'Chihuahua'),
+            (MUT, 'Mut'),
+            (LABRADOR, 'Labrador'),
+        )),
+        (CAT, (
+            (DSH, 'Domestic Short Hair'),
+            (DLH, 'Domestic Long Hair'),
+            (SIAMESE, 'Siamese'),
+            (RUSSIAN_BLUE, 'Russian Blue'),
+            (MAINE_COON, 'Main Coon'),
+        )),
+        (OTHER, (
+            (FISH, 'Fish'),
+            (SNAKE, 'Snake'),
+            (TURTLE, 'Turtle'),
+            (IGUANA, 'Iguana'),
+        )),
+    ]
+
     image = models.ImageField(upload_to='headshots', default='headshots/default.jpeg')
     name = models.CharField(max_length=25, blank=False)
     type = models.CharField(max_length=10, choices=PET_TYPE_CHOICES, blank=False, default=DOG)

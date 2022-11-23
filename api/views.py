@@ -17,24 +17,38 @@ def pets(request):
     return JsonResponse({'pets': serializer.data})
 
 
-def pet(request, id):
+@api_view(['POST'])
+def newPet(request):
+    new_pet_data = json.loads(request.body)
+    serializer = PetSerializer(data=new_pet_data)
+
+    if serializer.is_valid():
+        return Response(status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST', 'DELETE', 'UPDATE'])
+def currPet(request, pet_id):
     try:
-        data = Pet.objects.get(pk=id)
+        data = Pet.objects.get(pk=pet_id)
     except Pet.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'POST':
         serializer = PetSerializer(data)
-        return JsonResponse({'pets': serializer.data})
+        return Response(data={'pet': serializer.data}, status=status.HTTP_200_OK)
     elif request.method == 'DELETE':
         data.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     elif request.method == "UPDATE":
-        serializer = UpdatePetSerializer(data, data=request.data)
+        serializer = PetSerializer(data, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'pets': serializer.data})
+            return Response(data={'pet': serializer.data}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 @csrf_exempt
@@ -49,7 +63,7 @@ def createNewUser(request):
             'success': True,
             'is_superuser': user.is_superuser
         }
-        return Response(data=tokens)
+        return Response(data=tokens, status=status.HTTP_200_OK)
     else:
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
