@@ -10,15 +10,16 @@ import ProfileList from './components/ProfileList.jsx';
 import Profile from "./components/Profile.jsx"
 import NavBar from './components/NavBar.jsx';
 import NewPet from './components/NewPet.jsx';
+import Footer from './components/Footer.jsx';
 import { sampleData } from './sampleData.js';
 
 import AuthContext from "./context/AuthContext.jsx"
 
 function App() {
-  const [pets, setPets] = useState(sampleData);
+  const [pets, setPets] = useState([]);
   const [selectedPet, setSelectedPet] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(true);
   const navigate = useNavigate();
 
   const selectPet = (selectedPet) => {
@@ -27,6 +28,28 @@ function App() {
     // navigate to '/pet/:pet_id
     navigate(`/pet/${selectedPet.id}`);
   }
+
+  const getPets = async () => {
+    await fetch('http://127.0.0.1:8000/api/pets', {method: 'POST'})
+        .then((response) => response.json())
+        .then((data) => {
+          if (data['pets'] !== undefined){
+              console.log(data['pets'][0])
+              setPets(data['pets'])
+          }
+          else{
+            alert("Error getting pets - try again later");
+          }
+
+      })
+        .catch(err => console.log(err))
+  }
+
+  useEffect(() =>{
+      if (pets.length === 0){
+          getPets()
+      }
+  })
 
   const auth = {isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin};
 
@@ -45,6 +68,7 @@ function App() {
                 <Route path="/404" element={<NotFound />} />
                 <Route path="/" element={<Navigate to="/feed" replace />} />
             </Routes>
+              <Footer/>
           </AuthContext.Provider>
       </div>
   );
