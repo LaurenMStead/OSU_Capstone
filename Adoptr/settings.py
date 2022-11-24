@@ -132,6 +132,10 @@ STATICFILES_DIRS = [
     os.path.join(FRONTEND_DIR, "build/static"),
 ]
 
+# to handle pet images
+MEDIA_ROOT = os.path.join(BASE_DIR, 'api/headshots')
+MEDIA_URL = '/headshots/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

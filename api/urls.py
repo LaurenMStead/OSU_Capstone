@@ -1,10 +1,14 @@
 from django.urls import path
-from .views import pets, currPet, createNewUser, loginUser, newPet
+from .views import GetAllPetsView, currPet, CreateNewUserView, LoginCurrentUserView, CreateNewPetView, GetChoicesView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('pets', pets, name='pets'),
-    path('pets/add-new-pet', newPet, name="new-pet"),
+    path('pets', GetAllPetsView, name='pets'),
+    path('pets/add-new-pet', CreateNewPetView, name="new-pet"),
     path('pets/<int:id>', currPet, name='current-pet'),
-    path('signup', createNewUser, name='signup'),
-    path('login', loginUser, name='login'),
-]
+    path('signup', CreateNewUserView, name='signup'),
+    path('login', LoginCurrentUserView, name='login'),
+    path('get-choices', GetChoicesView, name='choices'),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

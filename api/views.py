@@ -6,29 +6,37 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
-
 from .models import Pet
-from .serializers import PetSerializer, UpdatePetSerializer, UserSerializer
+from .serializers import PetSerializer, CreatePetSerializer, UserSerializer
+from .choices import *
 
 
-def pets(request):
+@csrf_exempt
+@api_view(['POST'])
+def GetAllPetsView(request):
     data = Pet.objects.all()
     serializer = PetSerializer(data, many=True)
-    return JsonResponse({'pets': serializer.data})
+    return Response({'pets': serializer.data})
 
 
+@csrf_exempt
 @api_view(['POST'])
-def newPet(request):
+def CreateNewPetView(request):
+    serializer_class = CreatePetSerializer
+
     new_pet_data = json.loads(request.body)
-    serializer = PetSerializer(data=new_pet_data)
+    print(new_pet_data)
+    serializer = serializer_class(data=new_pet_data)
 
     if serializer.is_valid():
-        return Response(status=status.HTTP_201_CREATED)
+        serializer.save()
+        return Response(data={"new_pet": serializer.data}, status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['POST', 'DELETE', 'UPDATE'])
+@csrf_exempt
+@api_view(['POST', 'DELETE', 'PATCH'])
 def currPet(request, pet_id):
     try:
         data = Pet.objects.get(pk=pet_id)
@@ -53,7 +61,7 @@ def currPet(request, pet_id):
 
 @csrf_exempt
 @api_view(['POST'])
-def createNewUser(request):
+def CreateNewUserView(request):
     body = json.loads(request.body)
     serializer = UserSerializer(data=body)
 
@@ -70,7 +78,7 @@ def createNewUser(request):
 
 @csrf_exempt
 @api_view(['POST'])
-def loginUser(request):
+def LoginCurrentUserView(request):
     body = json.loads(request.body)
 
     verifyUsername = body['username']
@@ -82,3 +90,31 @@ def loginUser(request):
         return Response(data=admin, status=status.HTTP_200_OK)
     else:
         return Response(data={'Error': 'Username or password is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST', 'GET'])
+def GetChoicesView(request):
+    disp_choices = tup_to_list(PET_DISPOSITION_CHOICES)
+    age_choices = tup_to_list(PET_AGE_CHOICES)
+    avail_choices = tup_to_list(PET_AVAILABILITY_CHOICES)
+    type_choices = tup_to_list(PET_TYPE_CHOICES)
+    list_breed_choices = tup_to_list(PET_BREED_CHOICES)
+
+    breed_choices = {'Dog': tup_to_list(list_breed_choices[0]),
+                     'Cat': tup_to_list(list_breed_choices[1]),
+                     'Other': tup_to_list(list_breed_choices[2])}
+
+    gender_choices = tup_to_list(PET_GENDER_CHOICES)
+
+    return Response(data={'dispositions': disp_choices,
+                          'ages': age_choices,
+                          'availabilities': avail_choices,
+                          'types': type_choices,
+                          'breeds': breed_choices,
+                          'genders': gender_choices,
+                          })
+
+
+def tup_to_list(full_list):
+    rtn_lst = [full_list[i][1] for i in range(0, len(full_list))]
+    return rtn_lst
