@@ -11,6 +11,7 @@ import Profile from "./components/Profile.jsx"
 import NavBar from './components/NavBar.jsx';
 import NewPet from './components/NewPet.jsx';
 import EditPet from './components/EditPet.jsx';
+import Footer from './components/Footer.jsx';
 import AuthContext from "./context/AuthContext.jsx"
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
                 <Route path="/404" element={<NotFound />} />
                 <Route path="/" element={<Navigate to="/feed" replace />} />
             </Routes>
+              <Footer/>
           </AuthContext.Provider>
       </div>
   );
