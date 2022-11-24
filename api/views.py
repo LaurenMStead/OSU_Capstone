@@ -14,7 +14,7 @@ from .choices import *
 @csrf_exempt
 @api_view(['POST'])
 def GetAllPetsView(request):
-    data = Pet.objects.all()
+    data = Pet.objects.order_by('date_created')
     serializer = PetSerializer(data, many=True)
     return Response({'pets': serializer.data})
 

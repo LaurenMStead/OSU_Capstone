@@ -11,12 +11,10 @@ const NewPet = () =>  {
   const [dispositionChoices, setDispositionChoices] = useState([]);
   const [ages, setAges] = useState([]);
   const [availabilities, setAvailabilities] = useState([]);
-  const form_data = new FormData();
 
   // eslint-disable-next-line no-self-compare
-  const [file, setFile] = useState();
+  // const [file, setFile] = useState();
   // const files = fileList ? [...fileList] : [];
-
   // const handleFileChange = (e) => {
   //   e.preventDefault();
   //   form_data.append("image", e.target.files[0], e.target.files[0].name);
@@ -43,7 +41,6 @@ const NewPet = () =>  {
   }
 
   const setDropdownOptions = (optionName, optionList) => {
-
     return (
       <select className="NewPet_select" name={optionName} id={optionName} >
         {optionList?.map((option) => (

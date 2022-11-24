@@ -20,15 +20,26 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-      fetch('http://127.0.0.1:8000/api/pets')
+    const getPets = async () => {
+        await fetch('http://127.0.0.1:8000/api/pets', {method: 'POST'})
         .then((response) => response.json())
         .then((data) => {
-          data.pets.sort((a, b) => b.date_created - a.date_created);
-          setPets(data.pets);
-        })
+          if (data['pets'] !== undefined){
+              setPets(data['pets'])
+          }
+          else{
+            alert("Error getting pets - try again later");
+          }
+
+      })
         .catch(err => console.log(err))
-  }, []);
+  }
+
+  useEffect(() =>{
+      if (pets.length === 0){
+          getPets()
+      }
+  })
 
   const selectPet = (selectedPet) => {
     // set pet to the selected pet
