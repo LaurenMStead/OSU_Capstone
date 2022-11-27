@@ -33,7 +33,7 @@ def CreateNewPetView(request):
 
 
 @csrf_exempt
-@api_view(['DELETE', 'PUT'])
+@api_view(['DELETE', 'PUT', 'PATCH'])
 def UpdateCurrentPet(request, pet_id):
     try:
         data = Pet.objects.get(pk=pet_id)

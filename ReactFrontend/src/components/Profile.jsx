@@ -11,15 +11,14 @@ const Profile = ({ pet }) => {
     const adoptPet = async (pet) => {
         if (auth.isLoggedIn) {
             await fetch(`http://127.0.0.1:8000/api/pets/${pet.id}`, {
-            method: 'PATCH',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ "availability": 'Pending' })
+            method: 'PUT',
+            body: JSON.stringify({ 'availability': 'Pending' })
             })
             .then(response => response.json())
-            .then(response => setAvailability('Pending'))
+            .then(response => {
+                setAvailability('Pending')
+                alert("pet availability has been updated")
+            })
         } else {
             alert("Please log in or sign up to view information on our adoptable pets!");
         }
