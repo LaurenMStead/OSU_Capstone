@@ -1,6 +1,4 @@
 import json
-
-from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -22,10 +20,9 @@ def GetAllPetsView(request):
 @csrf_exempt
 @api_view(['POST'])
 def CreateNewPetView(request):
-    serializer_class = CreatePetSerializer
+    serializer_class = PetSerializer
 
     new_pet_data = json.loads(request.body)
-    print(new_pet_data)
     serializer = serializer_class(data=new_pet_data)
 
     if serializer.is_valid():
@@ -36,25 +33,23 @@ def CreateNewPetView(request):
 
 
 @csrf_exempt
-@api_view(['POST', 'DELETE', 'PATCH'])
-def currPet(request, pet_id):
+@api_view(['DELETE', 'PUT'])
+def UpdateCurrentPet(request, pet_id):
     try:
         data = Pet.objects.get(pk=pet_id)
     except Pet.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    if request.method == 'POST':
-        serializer = PetSerializer(data)
-        return Response(data={'pet': serializer.data}, status=status.HTTP_200_OK)
-    elif request.method == 'DELETE':
-        data.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    elif request.method == "UPDATE":
-        serializer = PetSerializer(data, data=request.data)
+    if request.method == 'PUT':
+        body = json.loads(request.body)
+        serializer = PetSerializer(data, data=body)
         if serializer.is_valid():
             serializer.save()
             return Response(data={'pet': serializer.data}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -71,6 +66,9 @@ def CreateNewUserView(request):
             'success': True,
             'is_superuser': user.is_superuser
         }
+
+        print(status.HTTP_200_OK)
+
         return Response(data=tokens, status=status.HTTP_200_OK)
     else:
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)

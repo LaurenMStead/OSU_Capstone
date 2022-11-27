@@ -1,13 +1,16 @@
-import React, { useContext } from 'react';
-import AuthContext from "../context/AuthContext";
+import React, {useEffect, useState} from 'react';
+import {useNavigate} from "react-router-dom";
 
 const EditPet = ({ selectedPet }) =>  {
+
   const type = ['Dog', 'Cat', 'Other'];
+  const [breeds, setBreeds] = useState({});
+  const [breedState, setBreedState] = useState(selectedPet.breed)
   const gender = ['Female', 'Male'];
   const age = ['Baby', 'Youth', 'Adult', 'Senior'];
   const availabilities = ['Available', 'Not Available', 'Pending', 'Adopted'];
   const dispositionChoices = ['Yes', 'No', 'Unknown'];
-  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const getDropdownOptions = (optionName, optionList ) => {
 
@@ -21,7 +24,7 @@ const EditPet = ({ selectedPet }) =>  {
 
     return (
       <select className="EditPet_select" name={optionName} id={optionName} defaultValue={selectedPet[optionName]}>
-        {optionList.map((option, i) => (
+        {optionList.map((option) => (
           <option id={option} className="EditPet_option" key={option} value={option} >{option}</option>
         ))}
       </select>
@@ -29,19 +32,24 @@ const EditPet = ({ selectedPet }) =>  {
   }
 
   const getPetInfo = async e => {
+
     e.preventDefault();
-    const typeInput = document.getElementById("EditPet_type");
-    //const breedInput = document.getElementById("breed");
-    const gwcInput = document.getElementById("EditPet_gwc");
-    const gwoaInput = document.getElementById("EditPet_gwoa");
-    const mblInput = document.getElementById("EditPet_mbl");
-    const ageInput = document.getElementById("EditPet_age");
-    const genderInput = document.getElementById("EditPet_gender");
-    const availInput = document.getElementById("EditPet_availability");
+
+    const typeInput = document.getElementById("type");
+    const breedInput = document.getElementById("breed");
+    const gwcInput = document.getElementById("gwc");
+    const gwoaInput = document.getElementById("gwoa");
+    const mblInput = document.getElementById("mbl");
+    const ageInput = document.getElementById("age");
+    const genderInput = document.getElementById("gender");
+    const availInput = document.getElementById("availability");
+
+    console.log(selectedPet.name)
+
     const petData = {
       "name" : e.target.name.value,
       "type": typeInput.value,
-      "breed": e.target.breed.value,
+      "breed": breedInput.value,
       "age" : ageInput.value,
       "gender": genderInput.value,
       "good_with_children": gwcInput.value,
@@ -55,19 +63,59 @@ const EditPet = ({ selectedPet }) =>  {
     await editPet(petData);
   }
 
-  const editPet = (event, petInfo) => {
-    event.preventDefault();
+  const editPet = async (petInfo) => {
 
-    fetch(`http://127.0.0.1:8000/api/pets/${selectedPet.id}`, {
+    await fetch(`http://127.0.0.1:8000/api/pets/${selectedPet.id}`, {
       method: 'PUT',
       body: JSON.stringify(petInfo)
     })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          if(data['pet'] !== undefined)
+          {
+            alert('Successfully updated ' + data['pet']['name'] );
+            navigate('/');
+          }
         })
         .catch(err => console.log(err))
   }
+
+  const deletePet = async () => {
+    await fetch(`http://127.0.0.1:8000/api/pets/${selectedPet.id}`, { method: 'DELETE'})
+        .then((response) => {
+          response.json()
+          if (response.status === 204){
+            alert("Pet successfully deleted");
+          }
+        })
+        .then((response) => {
+          navigate('/');
+        })
+        .catch(err => console.log(err))
+  }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getOptions = async () => {
+    await fetch('http://127.0.0.1:8000/api/get-choices', {
+      method: 'POST'
+    })
+        .then((response) => response.json())
+        .then((data) => {
+          setBreeds(data['breeds'])
+
+        })
+        .catch(err => console.log(err))
+  }
+
+  const handleDropDownChange = () => {
+    let typeValue = document.getElementById("type").value;
+    setBreedState(typeValue)
+  }
+
+  useEffect(() => {
+    getOptions();
+    handleDropDownChange();
+  }, [])
 
     return (
       <form id="EditPet" onSubmit={getPetInfo}>
@@ -78,11 +126,18 @@ const EditPet = ({ selectedPet }) =>  {
             <input className="EditPet_select" type="text" name="name" defaultValue={selectedPet.name}/>
 
             <label className="EditPet_label" htmlFor="type">Type:</label>
-            {getDropdownOptions('type', type)}
+            <select className="NewPet_select" name='type' id='type' defaultValue={selectedPet.type} onChange={handleDropDownChange}>
+              {type?.map((option) => (
+                <option id={option} className="NewPet_option" key={option} value={option} >{option}</option>
+              ))}
+            </select>
 
             <label className="EditPet_label" htmlFor="breed">Breed:</label>
-            <input className="EditPet_select" type="text" name="breed" defaultValue={selectedPet.breed}></input>
-
+            <select className="NewPet_select" name='breed' id='breed' defaultValue={selectedPet.breed}>
+            {breeds[breedState]?.map((option) => (
+              <option id={option} className="NewPet_option" key={option} value={option} >{option}</option>
+            ))}
+          </select>
             <label className="EditPet_label" htmlFor="gender">Gender:</label>
             {getDropdownOptions('gender', gender)}
 
@@ -103,7 +158,9 @@ const EditPet = ({ selectedPet }) =>  {
             <label className="EditPet_label" htmlFor="image">Image Link:</label>
             <input className="EditPet_select" type="text" name="image" defaultValue={selectedPet.image}></input>
 
-            <button className="EditPet_button">Submit</button>
+            <button className="EditPet_button" type={"submit"}>Submit</button>
+            <button className="EditPet_button" onClick={deletePet}>Delete Pet</button>
+            <button className="EditPet_button" onClick={() => navigate('/')}>Cancel</button>
             </fieldset>
           </fieldset>
         </form>
