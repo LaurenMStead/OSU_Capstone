@@ -241,15 +241,16 @@ textarea {
   text-decoration: none;
 }
 
-.FilterBar_button:hover, .ProfileCard_button:hover, .Profile_button:hover, .Login_button:hover, .Signup_button:hover, .NewPet_button:hover, .Login_createButton:hover, .Signup_loginButton:hover  {
+.FilterBar_button:hover, .ProfileCard_button:hover, .Profile_button:hover, .Login_button:hover, .Signup_button:hover, .NewPet_button:hover, .Login_createButton:hover, .Signup_loginButton:hover, .EditPet_button:hover  {
   background-color: lightblue;
 }
 
-.FilterBar_button:active, .ProfileCard_button:active, .Profile_button:active, .Login_button:active, .Signup_button:active, .NewPet_button:active, .Login_createButton:active, .Signup_loginButton:active  {
+.FilterBar_button:active, .ProfileCard_button:active, .Profile_button:active, .Login_button:active, .Signup_button:active, .NewPet_button:active, .Login_createButton:active, .Signup_loginButton:active, .EditPet_button:active  {
   box-shadow: black 2px 2px 0 0;
 }
 
-.footer{
+.footer, .App:after{
+  position: relative;
   left: 0;
   bottom: 0;
   table-layout: fixed;

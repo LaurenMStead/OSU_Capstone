@@ -1,6 +1,6 @@
 import './App.css';
-import React, {useState, useEffect } from "react";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import Login from "./components/Login.jsx";
 import Signup from "./components/Signup.jsx";
 import NotFound from "./components/NotFound.jsx";
@@ -15,15 +15,23 @@ import Footer from './components/Footer.jsx';
 import AuthContext from "./context/AuthContext.jsx"
 
 function App() {
+
   const [pets, setPets] = useState([]);
   const [selectedPet, setSelectedPet] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(true);
+  const auth = {isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin};
 
-    const getPets = async () => {
-        await fetch('http://127.0.0.1:8000/api/pets', {method: 'POST'})
-        .then((response) => response.json())
+  useEffect(() =>{
+      getPets();
+  }, []);
+
+  const getPets = () => {
+        fetch('http://127.0.0.1:8000/api/pets', {method: 'POST'})
+        .then((response) => {
+            return response.json()
+        })
         .then((data) => {
           if (data['pets'] !== undefined){
               setPets(data['pets'])
@@ -31,16 +39,9 @@ function App() {
           else{
             alert("Error getting pets - try again later");
           }
-
       })
         .catch(err => console.log(err))
   }
-
-  useEffect(() =>{
-      if (pets.length === 0){
-          getPets()
-      }
-  })
 
   const selectPet = (selectedPet) => {
     // set pet to the selected pet
@@ -49,14 +50,12 @@ function App() {
     navigate(`/pet/${selectedPet.id}`);
   }
 
-  const auth = {isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin};
-
   return (
       <div id="App">
           <AuthContext.Provider value={auth}>
             <NavBar />
             <Routes>
-                <Route path="feed" element={<ProfileList pets={pets} selectPet={selectPet} />} />
+                <Route path="feed" element={<ProfileList pets={pets} selectPet={selectPet} />}/>
                 <Route path="/login" element={<Login/>} />
                 <Route path="/signup" element={<Signup/>} />
                 <Route path="/browse" element={<Browse pets={pets} selectPet={selectPet} />} />
@@ -67,7 +66,7 @@ function App() {
                 <Route path="/404" element={<NotFound />} />
                 <Route path="/" element={<Navigate to="/feed" replace />} />
             </Routes>
-              <Footer/>
+            {/*<Footer/>*/}
           </AuthContext.Provider>
       </div>
   );

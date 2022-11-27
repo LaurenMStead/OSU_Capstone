@@ -23,8 +23,9 @@ const Login = () => {
         .then((data) => {
             console.log(data);
             if(data['is_superuser'] !== undefined){
-                auth.setIsLoggedIn(true);
+                auth.setIsLoggedIn(true)
                 auth.setIsAdmin(data['is_superuser']);
+                // auth.setIsAdmin(data['is_superuser']);
                 navigate('/');
             }
             else if (data['Error'] !== undefined){

@@ -28,6 +28,7 @@ const Signup = () => {
           {
             auth.setIsLoggedIn(true);
             auth.setIsAdmin(data['is_superuser']);
+           // auth.setIsAdmin(data['is_superuser']);
             navigate('/');
           }
           else if (data['username'] !== undefined){

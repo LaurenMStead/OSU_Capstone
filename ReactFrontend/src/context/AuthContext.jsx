@@ -1,9 +1,9 @@
-import { createContext } from "react";
+import {createContext, useState} from "react";
 
 const AuthContext = createContext({
     isLoggedIn: true,
-    setIsLoggedIn: () => {},
     isAdmin: true,
+    setIsLoggedIn: () => {},
     setIsAdmin: () => {},
 });
 

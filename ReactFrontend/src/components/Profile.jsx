@@ -46,7 +46,7 @@ const Profile = ({ pet }) => {
 
     const getEditButton = () => {
         return (
-            auth.isAdmin === true ?
+            auth.isAdmin ?
                 <button className="Profile_button" onClick={() => editPet()}>Edit</button>
             :
                 <></>

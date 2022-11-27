@@ -12,14 +12,6 @@ const NewPet = () =>  {
   const [ages, setAges] = useState([]);
   const [availabilities, setAvailabilities] = useState([]);
 
-  // eslint-disable-next-line no-self-compare
-  // const [file, setFile] = useState();
-  // const files = fileList ? [...fileList] : [];
-  // const handleFileChange = (e) => {
-  //   e.preventDefault();
-  //   form_data.append("image", e.target.files[0], e.target.files[0].name);
-  // };
-
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -101,7 +93,6 @@ const NewPet = () =>  {
       // "image": "",
     }
 
-    console.log(pet_data)
     await addPet(pet_data);
   }
 
@@ -110,10 +101,11 @@ const NewPet = () =>  {
         method: 'POST',
         body: JSON.stringify(petInfo)
       })
-        .then((response) => response.json())
+        .then((response) => response.json() )
         .then((data) => {
           if (data['new_pet'] !== undefined){
-            console.log(data['new_pet'])
+            alert("New pet, " + data['new_pet']['name'] + ", added successfully!");
+            navigate('/');
           }
           else{
             alert("Error adding pet - try again later");
@@ -129,12 +121,9 @@ const NewPet = () =>  {
       navigate("/404");
     }
     // fetches data until all required data is fetched
-    if (types.length === 0 || breeds.length === 0 || ages.length === 0 || genders.length === 0 ||
-        dispositionChoices.length === 0 || availabilities.length === 0){
-      getOptions()
-    }
+      getOptions();
 
-  }, [ages, auth, availabilities, breeds, dispositionChoices, genders, getOptions, navigate, types])
+  }, [auth, navigate])
 
   return (
     <form id="NewPet" onSubmit={getPetInfo}>
