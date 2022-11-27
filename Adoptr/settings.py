@@ -133,10 +133,30 @@ STATICFILES_DIRS = [
 ]
 
 # to handle pet images
-MEDIA_ROOT = os.path.join(BASE_DIR, '/headshots')
+# MEDIA_ROOT = os.path.join(BASE_DIR, '/headshots')
 MEDIA_URL = '/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# AWS S3 Configuration
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+with open(BASE_DIR / 'Adoptr/aws_access_key_id.txt') as f:
+    AWS_ACCESS_KEY_ID = f.read().strip()
+with open(BASE_DIR / 'Adoptr/aws_secret_access_key.txt') as f:
+    AWS_SECRET_ACCESS_KEY = f.read().strip()
+AWS_STORAGE_BUCKET_NAME = 'adoptrheadshots'
+
+# Your app endpoint
+AWS_S3_ENDPOINT_URL = os.environ.get('http://adoptrheadshots.developer.s3-website-us-west-1.amazonaws.com')  
+
+# Only public read for now
+AWS_QUERYSTRING_AUTH = False
+

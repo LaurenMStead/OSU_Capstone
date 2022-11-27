@@ -19,6 +19,6 @@ class Pet(models.Model):
     availability = models.CharField(max_length=15, choices=PET_AVAILABILITY_CHOICES, blank=False, default=AVAILABLE)
     description = models.CharField(max_length=255, blank=True, default='')
     news_blurb = models.CharField(max_length=255, blank=True, default='')
-    image = models.ImageField(upload_to=upload_to, default='headshots/default.jpeg')
+    image = models.FileField(upload_to='headshots/', default='headshots/default.jpeg')
     last_updated = models.DateTimeField(auto_now=True, blank=False)
     date_created = models.DateTimeField(auto_now_add=True, blank=False)
