@@ -56,7 +56,7 @@ const Profile = ({ pet }) => {
         <div id="Profile">
             <fieldset className="Profile_outerFieldset">
             <fieldset className="Profile_innerFieldset">
-                <img className="Profile_item" src={pet.image} alt={pet.name}/>
+                <img className="Profile_picture" src={pet.image} alt={pet.name}/>
 
                 <h2 className="Profile_header">{pet.name}</h2>
 

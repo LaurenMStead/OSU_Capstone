@@ -15,7 +15,7 @@ export default function ProfileCard({ pet, selectPet, getNextSpotlightPet }) {
         <div id="ProfileCard">
             <fieldset className="ProfileCard_outerFieldset">
                 <fieldset className="ProfileCard_innerFieldset">
-                    <img className="ProfileCard_item" onClick={() => selectPet(pet)} src={pet.image} alt={pet.name}/>
+                    <img className="ProfileCard_picture" onClick={() => selectPet(pet)} src={pet.image} alt={pet.name}/>
                     <h1 className="ProfileCard_item" onClick={() => selectPet(pet)}>
                         {pet.name}
                     </h1>
