@@ -6,6 +6,7 @@ export default function Browse({ pets, selectPet }) {
     const [spotlightIndex, setSpotlightIndex] = useState(0);
     const [spotlightPet, setSpotlightPet] = useState({});
 
+
     useEffect(() => {
         let filteredPets = pets.filter(pet => pet.availability === 'Available');
         for (let i = 0; i < filteredPets.length; i++) {
@@ -17,9 +18,12 @@ export default function Browse({ pets, selectPet }) {
     }, [pets]);
 
     const getNextSpotlightPet = () => {
+        setSpotlightPet(availablePets[spotlightIndex]);
+        setSpotlightIndex(spotlightIndex);
+
         let nextIndex = spotlightIndex + 1 === availablePets.length ? 0 : spotlightIndex + 1;
-        setSpotlightPet(availablePets[nextIndex]);
-        setSpotlightIndex(spotlightIndex + 1);
+
+        setSpotlightIndex(nextIndex);
     }
 
   return (
