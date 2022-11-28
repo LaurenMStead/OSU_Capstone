@@ -66,7 +66,7 @@ function App() {
                 <Route path="/404" element={<NotFound />} />
                 <Route path="/" element={<Navigate to="/feed" replace />} />
             </Routes>
-            {/*<Footer/>*/}
+            <Footer/>
           </AuthContext.Provider>
       </div>
   );

@@ -2,25 +2,15 @@ import React from "react";
 
 const Footer = () => {
     return(
-        <footer>
-            <table className="footer">
-                <tr>
-                    <td className="site_title">
-                        ADOPTR : a dating-style webapp for animal adoption
-                    </td>
-                    <td className="project_title">
-                        Oregon State University - Capstone Project - Fall 2022
-                    </td>
-                    <td className="authors">
-                        <tr>Sebastian Espinas</tr>
-                        <tr>Shawn Kim</tr>
-                        <tr>Lauren Ruff</tr>
-                        <tr>Neil Thayamballi</tr>
-                    </td>
-                </tr>
+        <div className="footer">
 
-            </table>
-        </footer>
+            <p className="site_title">ADOPTR <br/> A dating-style website for animal adoption</p>
+
+            <p className="project_title" >Oregon State University - Capstone Project - Fall 2022</p>
+
+            <p className="authors">Authors <br/> Sebastian Espinas <br/> Shawn Kim <br/> Lauren Ruff <br/> Neil Thayamballi </p>
+
+        </div>
     )
 }
 
