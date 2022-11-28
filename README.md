@@ -1,10 +1,9 @@
 # OSU Capstone Project - Pet Adoption App
 Contributors: Sebastian Espinas, Shawn Kim, Lauren Ruff, Neil Thayamballi
 
-## View the deployed site at [adoptr.pythonanywhere.com](https://adoptr.pythonanywhere.com)
-
 ## Instructions: Running the Server Locally for development
 1. In the terminal or CLI, navigate to the top level folder of the project
+2. 
 2. Type "python manage.py runserver" (without quotes) and hit enter
 3. Open a second terminal and navigate to %project%/ReactFrontend
 4. Type "npm start" (without quotes) and hit enter; your default browser should open to "localhost:3000/feed" to view the site
@@ -61,9 +60,9 @@ The main database is the PETS database. Each PET will have an ID, TYPE, BREED, A
 ### Software Tools
 - Figma for designing the website.
 - Javascript (React), CSS, and Webpack for web-facing, user side.
-- Python Django to create the server and host the database.
+- Python, Django, and Django Rest Framework (DRF) to create the server and host the database.
 - Petfinder API to get data for our database.
-- Generate SQL database with  ~~MongoDB~~  SQLite3.
+- Generate SQL database with SQLite3.
 
 ### Conclusion
 Our team’s goal is to create a seamless, easy-to-navigate website for those looking to adopt a pet, whether they are actively searching or are planning to adopt in the future. By using React, Python Django, and SQL, we will create a user-friendly, dynamic website with a reliable backend and accessible information for all available pets. This project will take roughly 320 hours to complete across all developers and each developer is expected to complete their tasks on time as noted in the Project Work section. Our collective efforts will ultimately lead to successful deployment and usability of this pet adoption website.    
