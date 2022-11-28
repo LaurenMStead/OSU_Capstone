@@ -8,8 +8,7 @@ const FilterBar = ({ filterPets, resetPets, dogBreeds, catBreeds, otherBreeds })
     other: otherBreeds
   };
   const disposition = ['Good with other animals', 'Good with children', 'Animal must be leashed at all times'];
-  const dispoChoice = ['Yes', 'No', 'Unknown'];
-  const age = ['Baby', 'Youth', 'Adult', 'Senior'];
+  const age = ['Baby', 'Young', 'Adult', 'Senior'];
   const availability = ['Available', 'Pending'];
   const [selectedType, setSelectedType] = useState(null);
   const [selectedGender, setSelectedGender] = useState([]);
@@ -69,19 +68,19 @@ const FilterBar = ({ filterPets, resetPets, dogBreeds, catBreeds, otherBreeds })
         <form className="FilterBar">
           <fieldset className="FilterBar_fieldset">
           <legend>You may select multiple of each category.</legend>
-            <label className="FilterBar_label" for="breed">Breed:</label>
+            <label className="FilterBar_label" htmlFor="breed">Breed:</label>
             {getDropdownOptions('breed', breed[selectedType], setSelectedBreed)}
 
-            <label className="FilterBar_label" for="gender">Gender:</label>
+            <label className="FilterBar_label" htmlFor="gender">Gender:</label>
             {getDropdownOptions('gender', gender, setSelectedGender)}
 
-            <label className="FilterBar_label" for="disposition">Disposition:</label>
+            <label className="FilterBar_label" htmlFor="disposition">Disposition:</label>
             {getDropdownOptions('disposition', disposition, setSelectedDisposition)}
 
-            <label className="FilterBar_label" for="age">Age:</label>
+            <label className="FilterBar_label" htmlFor="age">Age:</label>
             {getDropdownOptions('age', age, setSelectedAge)}
 
-            <label className="FilterBar_label" for="availability">Availability:</label>
+            <label className="FilterBar_label" htmlFor="availability">Availability:</label>
             {getDropdownOptions('availability', availability, setSelectedAvailability)}
 
             <button className="FilterBar_button" onClick={(event) => filterPets(event, { type: selectedType, breed: selectedBreed, disposition: selectedDisposition, age: selectedAge, gender: selectedGender, availability: selectedAvailability })}>Submit</button>
