@@ -1,8 +1,8 @@
 import {createContext, useState} from "react";
 
 const AuthContext = createContext({
-    isLoggedIn: true,
-    isAdmin: true,
+    isLoggedIn: false,
+    isAdmin: false,
     setIsLoggedIn: () => {},
     setIsAdmin: () => {},
 });
