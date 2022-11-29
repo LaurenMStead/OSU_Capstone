@@ -167,7 +167,7 @@ const NewPet = () =>  {
           <textarea className="NewPet_select" name="description"></textarea>
 
           <label className="NewPet_label" htmlFor="image">Select Pet Image(s):</label>
-          {/*<input className="NewPet_select" type="file" name="images" accept="image/*" multiple onChange={handleFileChange}/>*/}
+          <input className="NewPet_select" type="file" name="images" accept="image/*"/>
           {/* multiple onChange={handleFileChange}*/}
           {/*<ul>*/}
           {/*  {files.map((file, i) => (*/}

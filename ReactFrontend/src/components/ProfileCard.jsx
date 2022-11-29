@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ProfileCard({ pet, selectPet, getNextSpotlightPet }) {
+export default function ProfileCard({ pet, selectPet, getNextSpotlightPet, style }) {
 
     const viewBrowseFeature = () => {
         if (getNextSpotlightPet) {
@@ -12,7 +12,7 @@ export default function ProfileCard({ pet, selectPet, getNextSpotlightPet }) {
         }
     }
     return (
-        <div id="ProfileCard">
+        <div id={`ProfileCard${style === undefined ? '' : style}`} >
             <fieldset className="ProfileCard_outerFieldset">
                 <fieldset className="ProfileCard_innerFieldset">
                     <img className="ProfileCard_picture" onClick={() => selectPet(pet)} src={pet.image} alt={pet.name}/>
