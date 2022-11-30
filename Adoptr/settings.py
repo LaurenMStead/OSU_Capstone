@@ -24,11 +24,11 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'http://localhost:3000', 'adoptr.pythonanywhere.com']
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000', 'adoptr.pythonanywhere.com']
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'adoptr.pythonanywhere.com']
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000/api/login', 'http://localhost:3000']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000/api/login', 'http://localhost:3000', 'adoptr.pythonanywhere.com']
 
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
@@ -127,12 +127,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
 
-# For deployment
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-
 STATICFILES_DIRS = [
     os.path.join(FRONTEND_DIR, "build/static"),
 ]
+
+# For deployment
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # to handle pet images
 MEDIA_URL = '/'
@@ -157,4 +157,3 @@ AWS_S3_ENDPOINT_URL = os.environ.get('http://adoptrheadshots.developer.s3-websit
 
 # Only public read for now
 AWS_QUERYSTRING_AUTH = False
-
