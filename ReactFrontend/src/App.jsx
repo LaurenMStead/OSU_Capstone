@@ -19,8 +19,8 @@ function App() {
   const [pets, setPets] = useState([]);
   const [selectedPet, setSelectedPet] = useState({});
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const auth = {isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin};
 
   useEffect(() =>{
