@@ -20,9 +20,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'whfxmu35o6%2)9z71og9*efq^7++so1%@i-nwekkj2d8&fi=$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'http://localhost:3000', 'adoptr.pythonanywhere.com']
+
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
 
 CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
 
@@ -133,7 +135,6 @@ STATICFILES_DIRS = [
 ]
 
 # to handle pet images
-# MEDIA_ROOT = os.path.join(BASE_DIR, '/headshots')
 MEDIA_URL = '/'
 
 # Default primary key field type
@@ -141,10 +142,7 @@ MEDIA_URL = '/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
 # AWS S3 Configuration
-
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
@@ -155,7 +153,7 @@ with open(BASE_DIR / 'Adoptr/aws_secret_access_key.txt') as f:
 AWS_STORAGE_BUCKET_NAME = 'adoptrheadshots'
 
 # Your app endpoint
-AWS_S3_ENDPOINT_URL = os.environ.get('http://adoptrheadshots.developer.s3-website-us-west-1.amazonaws.com')  
+AWS_S3_ENDPOINT_URL = os.environ.get('http://adoptrheadshots.developer.s3-website-us-west-1.amazonaws.com')
 
 # Only public read for now
 AWS_QUERYSTRING_AUTH = False
