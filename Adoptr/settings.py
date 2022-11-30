@@ -20,15 +20,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'whfxmu35o6%2)9z71og9*efq^7++so1%@i-nwekkj2d8&fi=$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'http://localhost:3000', 'adoptr.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'http://localhost:3000']
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000', 'adoptr.pythonanywhere.com']
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'adoptr.pythonanywhere.com']
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000/api/login', 'http://localhost:3000', 'adoptr.pythonanywhere.com']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000/api/login', 'http://localhost:3000']
 
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api.apps.ApiConfig',
+    'api',
     'rest_framework',
 ]
 
@@ -60,13 +60,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Adoptr.urls'
 
-# For deployment - linking react to backend
-FRONTEND_DIR = os.path.join(BASE_DIR, 'ReactFrontend/')
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'build')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,17 +119,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+1
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(FRONTEND_DIR, "build/static"),
-]
-
-# For deployment
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # to handle pet images
 MEDIA_URL = '/'

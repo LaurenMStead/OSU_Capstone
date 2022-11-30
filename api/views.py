@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from .models import Pet
-from .serializers import PetSerializer, CreatePetSerializer, UserSerializer
+from .serializers import PetSerializer, UserSerializer
 from .choices import *
 
 
