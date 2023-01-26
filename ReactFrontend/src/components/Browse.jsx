@@ -30,7 +30,7 @@ export default function Browse({ pets, selectPet }) {
     <div id="Browse">
         <h1 className="Browse_header">Meet your next best friend!</h1>
         <div className="Browse_profileCard">
-            <ProfileCard pet={spotlightPet} selectPet={selectPet} key="profileCard" getNextSpotlightPet={getNextSpotlightPet} />
+            <ProfileCard pet={spotlightPet} selectPet={selectPet} key="profileCard" getNextSpotlightPet={getNextSpotlightPet} style="_h-fit-content"/>
         </div>
 
     </div>

@@ -20,5 +20,5 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),                                # admin URL
     path('api/', include('api.urls')),                              # backend/internal URL
-    path("", TemplateView.as_view(template_name="index.html")),     # link to React frontend
+    path(".*", TemplateView.as_view(template_name="index.html")),     # link to React frontend
 ]

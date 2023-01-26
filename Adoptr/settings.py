@@ -22,7 +22,9 @@ SECRET_KEY = 'whfxmu35o6%2)9z71og9*efq^7++so1%@i-nwekkj2d8&fi=$t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'http://localhost:3000', 'adoptr.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'http://localhost:3000']
+
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
 
 CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
 
@@ -41,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api.apps.ApiConfig',
+    'api',
     'rest_framework',
 ]
 
@@ -58,13 +60,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Adoptr.urls'
 
-# For deployment - linking react to backend
-FRONTEND_DIR = os.path.join(BASE_DIR, 'ReactFrontend/')
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'build')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,20 +119,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+1
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
 
-# For deployment
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-
-STATICFILES_DIRS = [
-    os.path.join(FRONTEND_DIR, "build/static"),
-]
-
 # to handle pet images
-# MEDIA_ROOT = os.path.join(BASE_DIR, '/headshots')
 MEDIA_URL = '/'
 
 # Default primary key field type
@@ -141,10 +132,7 @@ MEDIA_URL = '/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
 # AWS S3 Configuration
-
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
@@ -155,8 +143,7 @@ with open(BASE_DIR / 'Adoptr/aws_secret_access_key.txt') as f:
 AWS_STORAGE_BUCKET_NAME = 'adoptrheadshots'
 
 # Your app endpoint
-AWS_S3_ENDPOINT_URL = os.environ.get('http://adoptrheadshots.developer.s3-website-us-west-1.amazonaws.com')  
+AWS_S3_ENDPOINT_URL = os.environ.get('http://adoptrheadshots.developer.s3-website-us-west-1.amazonaws.com')
 
 # Only public read for now
 AWS_QUERYSTRING_AUTH = False
-

@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/build
+/staticfiles
 /.pnp
 .pnp.js
 
@@ -9,7 +11,11 @@
 /coverage
 
 # production
-/build
+/build/build
+
+*.pyc
+*.sqlite3
+package-lock.json
 
 # misc
 .DS_Store
